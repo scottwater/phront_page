@@ -8,7 +8,7 @@ namespace :import do
       data = parse_frontmatter(file_path)
       post = Post.new
       post.title = data[:title]&.strip
-      post.markdown = data[:markdown].gsub("https://scottw.com/uploads/", "https://blawg.scottw.com/mb-images/")
+      post.markdown = data[:markdown].gsub("https://scottw.com/uploads/", "https://images.scottw.com/mb-images/")
       post.slug = data[:slug]
       post.published_at = data[:date]
       post.author = author
