@@ -61,3 +61,25 @@ unless shorts_page
     description: "Quick Thoughts..."
   )
 end
+
+hello_world_post = Post.find_by(title: "Hello, World!")
+unless hello_world_post
+  hello_world_post = Post.new
+  hello_world_post.title = "Hello, World!"
+  hello_world_post.markdown = "
+
+  Welcome to PhrontPage!
+
+  You can login by navigating to [/admin](/admin). You should be prompted to create an account (unless you already have done so).
+
+  If you are using a public server, you should do this right away.
+
+  It is still early and there are limited docs. Please feel free to ask questions on the [issues](https://github.com/scottwater/phront_page/issues) page.
+
+  Happy blogging!
+
+  ".strip
+  hello_world_post.author = Author.first
+  hello_world_post.published_at = 1.day.ago # Timezones are a bitch
+  hello_world_post.save!
+end
