@@ -1,0 +1,9 @@
+{
+  "version": "1.0.3",
+  "createdAt": "2024-05-24T18:57:50.628Z",
+  "updatedAt": "2024-05-29T20:53:57.871Z",
+  "options": {
+    "ignoredControllerIdentifiers": ["drawer"],
+    "ignoredAttributes": ["data-drawer-target"]
+  }
+}

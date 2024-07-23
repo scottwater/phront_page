@@ -1,0 +1,15 @@
+<%= c 'admin/form/wrapper', model: config, title: "Social Settings" do %>
+  <%= form_with(model: config, url: configuration_path(:socials), method: :patch, class: "contents space-y-4") do |form| %>
+    <ul class="divide-y divide-gray-200">
+    <% config.networks.each do |network| %>
+      <li class="py-4 space-y-2">
+      <%= form.tf "#{network}_username", label: network.titleize + " Username" %>
+      <%= form.tf "#{network}_url", label: network.titleize + " Url" %>
+      </li>
+    <% end %>
+    </ul>
+    <div class="flex space-x-4">
+      <%= form.sb button_type: "wide", text: "Save Social Settings" %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,24 @@
+<%= c 'admin/form/wrapper', model: page do %>
+  <%= form_with(model: page, class: "contents", html: {"data-controller": "admin--unsaved-changes"}) do |form| %>
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+      <%= form.tf :name, wrapped_class: "sm:col-span-2", required: true %>
+      <%= form.mda :markdown, rows: 16, wrapped_class: "sm:col-span-2", placeholder: "This page's content" %>
+      <%= c 'admin/form/drawer' do |dialog| %>
+        <%= form.sf :template, Pages.select_list, wrapped_class: "sm:col-span-2", help: "This controls the how posts are displayed on this page" %>
+        <% if page.content_page? %>
+          <%= form.tf :slug, wrapped_class: "sm:col-span-2", help: "The link used for this page. Redirects on changes are automatic, but do not change often." %>
+          <%= form.cb :main_menu, wrapped_class: "sm:col-span-2", help: "When checked, this page will be displayed in the blogs main navigation (and footer)" %>
+          <%= form.cb :exclude_posts_from_home_page, label: "Exclude Posts from Home Page", wrapped_class: "sm:col-span-2", help: "Posts only be visible on this page" %>
+        <% end %>
+        <%= form.img_drop :og_image_url, wrapped_class: "sm:col-span-2", label: "Open Graph Image", help: "Any image type. This image will be used to set your open graph image" %>
+        <%= form.img_drop :image_url, wrapped_class: "sm:col-span-2", label: "Page Image", help: "Any image type. This image will be used on your page (if the page supports images)" %>
+        <%= form.ta :description, rows: 4, wrapped_class: "sm:col-span-2" %>
+        <%= form.tf :title, wrapped_class: "sm:col-span-2", help: "This sets the Title elemement in the head of your page" %>
+      <% end %>
+    </div>
+    <div class="w-full flex justify-between items-center px-4">
+      <%= form.sb button_type: "wide" %>
+      <%= c 'admin/form/drawer_button', text: "Options" %>
+    </div>
+  <% end %>
+<% end %>

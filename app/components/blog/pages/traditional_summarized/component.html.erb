@@ -1,0 +1,17 @@
+<%= render Blog::Pages::Wrapper.new(page:, next:) do %>
+  <div class="space-y-6 divide-y divide-gray-200 dark:divide-gray-700 max-w-2xl mx-auto">
+    <% posts.each do |post| %>
+      <article class="pt-4">
+          <h2 class="my-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <a href="<%= post.slug %>"><%= post.title %></a>
+          </h2>
+          <%= c 'blog/elements/html' do %>
+            <p><%== post.summary %></p>
+          <% end %>
+          <div class="">
+            <%= c 'blog/elements/post_anchor', slug: post.slug, published_at: post.published_at %>
+          </div>
+      </article>
+    <% end %>
+  </div>
+<% end %>

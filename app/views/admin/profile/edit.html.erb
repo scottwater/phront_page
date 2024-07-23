@@ -1,0 +1,17 @@
+<%= c 'admin/form/wrapper', model: Current.author, title: "Update Your Profile", wrapped_class:"max-w-xl mx-auto" do %>
+  <%= form_with(model: Current.author, url: update_profile_path, class: "contents", html: {"data-controller": "admin--unsaved-changes"}) do |form| %>
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6" data-controller="admin--profile" data-admin--profile-timezones-value="<%= TimeZones::IANA_TO_RAILS_MAPPING.to_json %>">
+      <%= form.tf :first_name, wrapped_class: "sm:col-span-2", required: true %>
+      <%= form.tf :last_name, wrapped_class: "sm:col-span-2", required: true %>
+      <%= form.img_drop :avatar_url, wrapped_class: "sm:col-span-2", label: "Avatar", help: "Any image type. If missing, it will default to your Graratar" %>
+      <%= form.ta :bio, rows: 4, wrapped_class: "sm:col-span-2" %>
+      <%= form.sf :time_zone, time_zone_options_for_select(Current.author.time_zone), label: "Time Zone", wrapped_class: "sm:col-span-2", required: true, data: {
+        "admin--profile-target": "select"
+      } %>
+      <div data-admin--profile-target="message" class="hidden bg-yellow-50 p-4 sm:col-span-2 text-sm text-gray-500"></div>
+    </div>
+    <div class="w-full flex justify-between items-center px-4">
+      <%= form.sb button_type: "wide", text: "Update Profile" %>
+    </div>
+  <% end %>
+<% end %>

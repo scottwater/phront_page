@@ -1,0 +1,8 @@
+<a href="/" class="flex items-center">
+  <% if logo? %>
+    <%== svg_embeded logo, klass: "mr-3 h-6 sm:h-9" %>
+  <% else %>
+    <%= svg :atom, class: "mr-3 h-6 sm:h-9" %>
+  <% end %>
+    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"><%= name %></span>
+</a>

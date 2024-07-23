@@ -1,0 +1,16 @@
+<div class="max-w-lg mx-auto">
+  <%= c 'admin/form/wrapper', model: @author, title: "Update Your Account" do %>
+    <%= form_with(model: @author, url: update_account_path, class: "contents", html: {"data-controller": "admin--unsaved-changes"}) do |form| %>
+      <div class="grid gap-4 sm:grid-cols-1 sm:gap-6">
+        <%= form.pf :password, label: "Your Password", required: true, help: "To change your email or password, you must enter your current password." %>
+        <hr class="border-gray-200 dark:border-gray-700">
+        <%= form.ef :email, wrapped_class: "", required: true %>
+        <%= form.pf :new_password, label: "Your New Password", help: "Leave blank to keep the same password" %>
+        <%= form.pf :confirm_new_password, label: "Confirm Your New Password" %>
+      </div>
+      <div class="w-full flex justify-between items-center px-4">
+        <%= form.sb button_type: "wide", text: "Update Account" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

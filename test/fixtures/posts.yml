@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  markdown: My Body
+  html: <p>My Body</p>
+  slug: /my-slug
+  image_url: https://picsum.photos/id/237/600/800
+  description: My Descripton
+  title: My Title
+  author: scott
+  published_at: 2024-05-28 06:34:14
+
+two:
+  markdown: MyText
+  html: MyText
+  slug: MyText
+  og_image_url: MyText
+  image_url: MyText
+  description: MyText
+  title: MyText
+  author: scott
+  published_at: 2024-05-28 06:34:14
+
+unpublished:
+  markdown: Unpublished Post
+  html: <p>Unpublished Post</p>
+  slug: /unpublished
+  title: Unpublished Post
+  author: scott

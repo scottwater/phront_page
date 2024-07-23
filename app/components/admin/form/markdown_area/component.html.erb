@@ -1,0 +1,13 @@
+<div <%= merged_classes_class_attribute %>>
+    <%= form.label name, label, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+    <%= form.text_area name,
+      rows: rows,
+      data: {
+          controller: "textarea-autogrow #{stimulus_controller}",
+          "#{stimulus_controller}_cdn_value": uploaded_assets_base_path
+        },
+      class: "block p-2.5 w-full text-sm md:text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+      value: value,
+      **attributes %>
+      <%= c 'admin/form/help', help: %>
+</div>

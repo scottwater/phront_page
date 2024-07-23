@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+class <%= class_name %>::Component < <%= parent_class %>
+<% if options[:inline] -%>
+  erb_template <<~TEMPLATE
+    <div>
+      <%%= content %>
+    </div>
+  TEMPLATE
+<% end -%>
+end

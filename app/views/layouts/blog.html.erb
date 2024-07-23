@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%= c 'blog/head' do %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+  <% end %>
+  <body class="bg-gray-50 dark:bg-gray-800">
+    <%= c 'blog/header', pages: navigation_pages %>
+    <main class="w-full antialiased container mx-auto mt-6 mb-10 pb-10 lg:mt-12 format-blog format format-sm sm:format-base lg:format-lg dark:format-invert">
+      <%= c 'admin/flashed', alert:, notice: %>
+      <section class="">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
+          <%= yield %>
+        </div>
+      </section>
+    </main>
+    <%= c 'blog/footer', pages: navigation_pages %>
+    <%== Current.blog_config.settings.footer if Current.blog_config.settings.footer? %>
+  </body>
+</html>

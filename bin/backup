@@ -1,0 +1,47 @@
+#!/bin/bash
+# Verify this script has execute permissions
+set -e
+
+# Hatchbox settings for ENVs
+cd /home/deploy/howivscode/current
+eval "$(/home/deploy/.asdf/bin/asdf vars)"
+
+s3_key=$BACKUP_S3_KEY
+s3_secret=$BACKUP_S3_SECRET
+bucket=$BACKUP_S3_BUCKET
+backup_db_passphrase=$BACKUP_S3_DB_PASSPHRASE
+data_directory=$SQLITE_DATABASE_DIRECTORY
+# ensure each backup has the same date key
+date_key=$(date '+%Y-%m-%d-%H-%M-%S')
+
+function backupToS3()
+{
+  database=$1
+  database_file_name=$(basename -- "$database")
+  database_name="${database_file_name%.*}"
+
+  backup_file_name="/tmp/$database_name-backup-$date_key.sqlite3"
+  gpg_backup_file_name="$database_name-$date_key.gpg"
+
+  sqlite3 "$database" ".backup $backup_file_name"
+  gzip "$backup_file_name"
+  gpg --yes --batch --passphrase="$backup_db_passphrase" --output "/tmp/$gpg_backup_file_name" -c "$backup_file_name.gz"
+
+  date=$(date +"%a, %d %b %Y %T %z")
+  content_type='application/tar+gzip'
+  string="PUT\n\n$content_type\n$date\n/$bucket/$gpg_backup_file_name"
+  signature=$(echo -en "${string}" | openssl sha1 -hmac "${s3_secret}" -binary | base64)
+  curl -X PUT -T "/tmp/$gpg_backup_file_name" \
+    -H "Host: $bucket.s3.amazonaws.com" \
+    -H "Date: $date" \
+    -H "Content-Type: $content_type" \
+    -H "Authorization: AWS ${s3_key}:$signature" \
+    "https://$bucket.s3.amazonaws.com/$gpg_backup_file_name"
+
+  rm "$backup_file_name.gz"
+  rm "/tmp/$gpg_backup_file_name"
+}
+
+for file in "$data_directory"/*.sqlite3; do
+  backupToS3 "$file"
+done

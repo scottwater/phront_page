@@ -1,0 +1,13 @@
+<%= c 'admin/form/wrapper', model: config, title: "Meta Configuration Settings" do %>
+  <%= form_with(model: config, url: configuration_path(:meta), method: :patch, class: "contents space-y-4") do |form| %>
+    <%= form.tf :name, required: true, help: "Your Blog's Name" %>
+    <%= form.tf :title, required: true, help: "The title in your head's title element" %>
+    <%= form.tf :subtitle %>
+    <%= form.tf :copyright %>
+    <%= form.ta :logo, help: "An SVG to prepend to your blog's name." %>
+    <%= form.img_drop :og_image_url, label: "Og Image Url", required: true, help: "The default image used for open graph tags" %>
+    <div class="flex space-x-4">
+      <%= form.sb button_type: "wide", text: "Save Meta Configuration" %>
+    </div>
+  <% end %>
+<% end %>

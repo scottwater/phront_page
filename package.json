@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "flowbite-typography": "^1.0.3"
+  },
+  "devDependencies": {
+    "playwright": "1.45.0"
+  }
+}

@@ -1,0 +1,8 @@
+<%= c 'admin/model_list' do |component| %>
+    <% component.with_header { "Configuration"} %>
+    <% @configs.each do |config| %>
+      <% component.with_row do |row| %>
+        <%= row.with_cell { link_to config[:title], edit_configuration_path(config[:name]), class: "hover:underline" } %>
+      <% end %>
+    <% end %>
+<% end %>

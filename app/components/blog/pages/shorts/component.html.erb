@@ -1,0 +1,10 @@
+<%= render Blog::Pages::Wrapper.new(page:, next:) do %>
+  <div class="mb-16 space-y-4 lg:pl-8 max-w-3xl mx-auto divide-y  divide-gray-200 dark:divide-gray-700">
+    <% posts.each do |post| %>
+      <article>
+        <%= c 'blog/elements/html', html: post.html %>
+        <%= c 'blog/elements/post_anchor', slug: post.slug, published_at: post.published_at %>
+      </article>
+    <% end %>
+  </div>
+<% end %>

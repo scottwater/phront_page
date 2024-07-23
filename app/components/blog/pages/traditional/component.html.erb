@@ -1,0 +1,15 @@
+<%= render Blog::Pages::Wrapper.new(page:, next:) do %>
+  <div class="divide-y divide-gray-200 dark:divide-gray-700 max-w-4xl mx-auto">
+    <% posts.each do |post| %>
+      <article class="pb-6">
+          <h2 class="not-format format-sm">
+              <a class="hover:underline" href="<%= post.slug %>"><%= post.title %></a>
+          </h2>
+          <%= render Blog::Elements::Html::Component.new.with_content(post.html) %>
+          <div class="">
+            <%= c 'blog/elements/post_anchor', slug: post.slug, published_at: post.published_at %>
+          </div>
+      </article>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,61 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+home:
+  name: Home
+  markdown: |
+    This is the home page.
+  html: "<p>This is the home page.</p>\n"
+  slug: /
+  template: blog/pages/traditional
+  page_type: "home"
+
+search:
+  name: Search
+  markdown: |
+    A searchable page.
+  html: "<p>Your Query: '{{query}}'</p>\n"
+  title: Search '{{query}}'
+  slug: /search
+  template: blog/pages/traditional_summarized
+  page_type: "search"
+
+about:
+  name: About
+  markdown: |
+    # About
+    This is the about page.
+  html: "<h1>About</h1>\n<p>This is the about page.</p>\n"
+  slug: /about
+  main_menu: true
+  template: blog/pages/traditional
+
+excluded_page:
+  name: Excluded Pages
+  markdown: |
+    This page has posts that are excluded from the main menu.
+  html: "<p>This page has posts that are excluded from the main menu.</p>\n"
+  slug: /excluded-pages
+  main_menu: true
+  template: blog/pages/traditional
+  exclude_posts_from_home_page: true
+
+
+one:
+  name: Page One
+  markdown: Page one content
+  html: <p>Page one content</p>
+  template: blog/pages/traditional
+  slug: /page-one
+  main_menu: true
+  description: Page one description
+  title: Page one title
+
+two:
+  name: Page Two
+  markdown: Page two content
+  html: <p>Page two content</p>
+  template: blog/pages/traditional_summarized
+  slug: /page-two
+  main_menu: true
+  description: Page two description
+  title: Page two title

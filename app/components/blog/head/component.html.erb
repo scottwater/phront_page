@@ -1,0 +1,46 @@
+<head>
+    <%= content %>
+    <% if has_written_content? %>
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:description" content="<%= description %>">
+      <% if og_image_url %>
+      <meta name="twitter:image" content="<%= og_image_url %>">
+      <% end %>
+      <% if socials.x_username %>
+      <meta name="twitter:site" content="<%= socials.x_username %>">
+      <meta name="twitter:creator" content="<%= socials.x_username %>">
+      <% end %>
+      <meta name="twitter:title" content="<%= title %>">
+      <meta proprtype="twitter:url" content="<%= url %>">
+
+      <meta property="og:site_name" content="ScottW/rites">
+      <meta name="og:description" content="<%= description %>">
+      <meta property="og:type" content="article">
+      <% if og_image_url %>
+      <meta property="og:image" content="<%= og_image_url %>">
+      <% end %>
+      <meta property="og:title" content="<%= title %>">
+      <meta proprtype="og:url" content="<%= url %>">
+    <% end %>
+
+    <meta name="generator" content="PhrontPage <%= Rails.application.config.app_version %>">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+
+    <link href="<%= feed_url(:xml) %>" rel="alternate" type="application/rss+xml" title="<%= title %>">
+    <link href="<%= feed_url(:json) %>" rel="alternate" type="application/json" title="<%= title %>">
+
+    <title><%= title %></title>
+
+  <meta name="description" content="<%= description %>">
+  <link rel="canonical" href="<%= url %>">
+  <% socials.urls.each do |url| %>
+    <link rel="me" href="<%= url %>">
+  <% end %>
+
+  <%== settings.header if settings.header? %>
+</head>

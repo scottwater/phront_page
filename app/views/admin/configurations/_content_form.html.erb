@@ -1,0 +1,8 @@
+<%= c 'admin/form/wrapper', model: config, title: "Content Configuration Settings" do %>
+  <%= form_with(model: config, url: configuration_path(:content), method: :patch, class: "contents space-y-4") do |form| %>
+    <%= form.sf :title_less_page_id, Pages.select_list_for_posts_with_no_page, selected: config.title_less_page_id, label: "Posts with no Title", help: "Do you want to place all posts with no title in a specific page? This will not affect posts already created and those with pages already specfied." %>
+    <div class="flex space-x-4">
+      <%= form.sb button_type: "wide", text: "Save Content Configuration" %>
+    </div>
+  <% end %>
+<% end %>

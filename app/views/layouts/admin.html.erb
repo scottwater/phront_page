@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin <%= content_for(:title) || "Phront Page" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="turbo-prefetch" content="false">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+<body class="bg-gray-50 dark:bg-gray-800">
+<div class="antialiased bg-gray-50 dark:bg-gray-900">
+    <%= c 'admin/menu' %>
+    <%= c 'admin/sidebar' %>
+    <main class="p-4 md:ml-64 h-auto pt-20">
+      <div class="max-w-4xl mx-auto">
+      <%= c 'admin/flashed', alert:, notice: %>
+      <%= yield %>
+      </div>
+    </main>
+  </div>
+  </body>
+</html>

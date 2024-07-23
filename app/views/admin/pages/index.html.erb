@@ -1,0 +1,21 @@
+<% content_for :title, "Pages" %>
+
+<%= c 'admin/model_list', button_text: "Add New Page", button_url: new_page_path do |list| %>
+    <% list.with_header { "Name"} %>
+    <% list.with_header { "Slug"} %>
+    <% list.with_header { "Navigation"} %>
+
+    <% @pages_data.records.map {|page| page}.each do |page| %>
+      <% list.with_row do |row| %>
+        <%= row.with_cell { page.name } %>
+        <%= row.with_cell { page.slug } %>
+        <%= row.with_cell { page.main_menu?.to_s } %>
+        <%= row.with_action(text: "View", url: page.slug, target: "_blank") %>
+        <%= row.with_action(text: "Edit", url: edit_page_path(page.id)) %>
+        <% if page.deletable? %>
+          <%= row.with_action(text: "Delete", url: page, data: {turbo_method: :delete}) %>
+        <% end %>
+      <% end %>
+    <% end %>
+<% end %>
+<%= c 'admin/pager', url: request.url, next: @pages_data.next? %>
