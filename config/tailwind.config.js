@@ -5,13 +5,13 @@ module.exports = {
     './public/*.html',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
-    './app/views/**/*.{erb,haml,html,slim,rb}',
-    './app/components/**/*.{js,erb,haml,html,slim,rb}'
+    './app/views/**/*.{erb,html,rb}',
+    './app/components/**/*.{js,erb,html,rb}'
   ],
   // With TailwindCSS-Rails 2.6.3 classes from .rb variants are not getting included consistently
   safelist: [
-    'md:w-1/2',
-    'translate-x-full'
+   // 'md:w-1/2',
+    //'translate-x-full'
   ],
   darkMode: 'class',
   theme: {
