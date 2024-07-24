@@ -93,7 +93,6 @@ class PagesTest < ApplicationSystemTestCase
       click_on "Options"
       fill_in "page_name", with: name
       yield(name)
-      sleep 1 if ENV["CI"]
     end
     # Name is not ideal since it is not unique. However, since slug
     # can be changed based on page/etc it is the best we can do.
