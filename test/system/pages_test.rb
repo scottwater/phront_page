@@ -14,7 +14,7 @@ class PagesTest < ApplicationSystemTestCase
     sign_in_as(authors(:scott))
     click_on "Add New Page"
     assert_current_path new_page_url
-    fill_in "Name", with: "Hello, World!"
+    fill_in "page_name", with: "Hello, World!"
     click_on "Create Page"
     assert_current_path pages_url
   end
@@ -22,7 +22,7 @@ class PagesTest < ApplicationSystemTestCase
   test "should set extra page details" do
     visit new_page_url
     last_page = sign_in_execute_steps_and_return_page(name: "Mo Details, Mo Problems!") do
-      fill_in "Markdown", with: "This is markdown for the test page."
+      fill_in "page_markdown", with: "This is markdown for the test page."
       click_on "Options"
       fill_in "Description", with: "This is a description."
       fill_in "Title", with: "This is a title"
@@ -37,7 +37,7 @@ class PagesTest < ApplicationSystemTestCase
   test "Drop a photo onto the editor" do
     visit new_page_url
     last_page = sign_in_execute_steps_and_return_page do
-      fill_in "Markdown", with: "This is markdown for the test page. "
+      fill_in "page_markdown", with: "This is markdown for the test page. "
       drop_file "photo.jpg", "#page_markdown"
       click_on "Create Page"
     end
@@ -48,7 +48,7 @@ class PagesTest < ApplicationSystemTestCase
   test "Drop a photo onto an image drop" do
     visit new_page_url
     last_page = sign_in_execute_steps_and_return_page do
-      fill_in "Markdown", with: "This is markdown for the test page."
+      fill_in "page_markdown", with: "This is markdown for the test page."
       click_on "Options"
       drop_file("photo.jpg", "label[for=image-drop-image_url]")
       click_on "Create Page"
@@ -88,8 +88,11 @@ class PagesTest < ApplicationSystemTestCase
 
   def sign_in_execute_steps_and_return_page(name: SecureRandom.hex(10), signin: true)
     sign_in_as(authors(:scott)) if signin
-    fill_in "Name", with: name
-    yield(name)
+    within("#page-form") do
+      click_on "Options"
+      fill_in "page_name", with: name
+      yield(name)
+    end
     # Name is not ideal since it is not unique. However, since slug
     # can be changed based on page/etc it is the best we can do.
     Page.find_sole_by(name:)

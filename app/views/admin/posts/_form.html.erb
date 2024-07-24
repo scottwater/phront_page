@@ -1,8 +1,8 @@
 <%= c 'admin/form/wrapper', model: post do %>
-  <%= form_with(model: post, class: "contents", html: {"data-controller": "admin--unsaved-changes"}) do |form| %>
+  <%= form_with(model: post, class: "contents", html: {"data-controller": "admin--unsaved-changes", id: "post-form"}) do |form| %>
     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mt-2">
-      <%= form.tf :title, wrapped_class: "sm:col-span-2" %>
-      <%= form.mda :markdown, rows: 16, wrapped_class: "sm:col-span-2", placeholder: "Your overly witty post", required: true %>
+      <%= form.tf :title, label: false, wrapped_class: "sm:col-span-2", placeholder: "Post Title (optional)" %>
+      <%= form.mda :markdown, label: false, rows: 16, wrapped_class: "sm:col-span-2", placeholder: "Your overly witty post content (written in markdown)", required: true %>
       <%= c 'admin/form/drawer' do %>
         <%= form.sf :page_id, Pages.select_list_for_posts_with_no_page, selected: post.page_id, wrapped_class: "sm:col-span-2" %>
         <%= form.tf :slug, wrapped_class: "sm:col-span-2" %>

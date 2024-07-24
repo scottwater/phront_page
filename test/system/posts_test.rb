@@ -15,7 +15,7 @@ class PostsTest < ApplicationSystemTestCase
     title = "Hello, World! #{SecureRandom.hex(5)}"
     last_post = sign_in_execute_steps_and_return_post(title:, signin: false) do
       assert_current_path new_post_url
-      fill_in "Markdown", with: "This is a test post."
+      fill_in "post_markdown", with: "This is a test post."
       click_on "Create Post"
       assert_current_path posts_url
     end
@@ -25,7 +25,7 @@ class PostsTest < ApplicationSystemTestCase
   test "should set extra post details" do
     visit new_post_url
     last_post = sign_in_execute_steps_and_return_post do
-      fill_in "Markdown", with: "This is a test post."
+      fill_in "post_markdown", with: "This is a test post."
       click_on "Options"
       fill_in "Summary", with: "This is a summary."
       select Pages.select_list_for_posts.first[0], from: "Page"
@@ -44,7 +44,7 @@ class PostsTest < ApplicationSystemTestCase
   test "Drop a photo onto the editor" do
     visit new_post_url
     last_post = sign_in_execute_steps_and_return_post do
-      fill_in "Markdown", with: "This is a test post. "
+      fill_in "post_markdown", with: "This is a test post. "
       drop_file "photo.jpg", "#post_markdown"
       click_on "Create Post"
     end
@@ -54,7 +54,7 @@ class PostsTest < ApplicationSystemTestCase
   test "Drop a photo onto an image drop" do
     visit new_post_url
     last_post = sign_in_execute_steps_and_return_post do |title|
-      fill_in "Markdown", with: "This is a test post."
+      fill_in "post_markdown", with: "This is a test post."
       click_on "Options"
       drop_file("photo.jpg", "label[for=image-drop-og_image_url]")
       click_on "Create Post"
@@ -64,23 +64,25 @@ class PostsTest < ApplicationSystemTestCase
 
   test "update a post" do
     post = posts(:one)
+    # First page that is not the current page
+    newly_selected_page = Pages.select_list_for_posts.find { |page| page[1] != post.page_id }
     assert_not_nil post.image_url
     visit edit_post_url(post)
 
     sign_in_as(authors(:scott))
-    fill_in "Title", with: "Updated Title"
-    fill_in "Markdown", with: "Updated Markdown"
-    click_on "Options"
-    fill_in "Summary", with: "Updated Summary"
-    fill_in "Description", with: "Updated Description"
-    # First page that is not the current page
-    newly_selected_page = Pages.select_list_for_posts.find { |page| page[1] != post.page_id }
-    select newly_selected_page[0], from: "Page"
-    find("div[data-admin--form--image-drop--component-target='previewZone'] a").click
-    drop_file("photo.jpg", "label[for=image-drop-og_image_url]")
-    click_button "Update Post"
+    within("#post-form") do
+      fill_in "post_title", with: "Updated Title"
+      fill_in "post_markdown", with: "Updated Markdown"
+      click_on "Options"
+      fill_in "Summary", with: "Updated Summary"
+      fill_in "Description", with: "Updated Description"
+      select newly_selected_page[0], from: "Page"
+      find("div[data-admin--form--image-drop--component-target='previewZone'] a").click
+      drop_file("photo.jpg", "label[for=image-drop-og_image_url]")
+      click_button "Update Post"
+    end
 
-    post = Post.find(post.id)
+    post.reload
     assert_equal "Updated Title", post.title
     assert_equal "Updated Markdown", post.markdown
     assert_equal "Updated Summary", post.summary
@@ -92,8 +94,10 @@ class PostsTest < ApplicationSystemTestCase
 
   def sign_in_execute_steps_and_return_post(title: SecureRandom.hex(10), signin: true)
     sign_in_as(authors(:scott)) if signin
-    fill_in "Title", with: title
-    yield(title)
+    within("#post-form") do
+      fill_in "post_title", with: title
+      yield(title)
+    end
     # Title is not ideal since it is not unique. However, since slug
     # can be changed based on page/etc it is the best we can do.
     Post.find_sole_by(title:)

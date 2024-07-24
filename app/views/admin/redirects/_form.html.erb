@@ -1,5 +1,5 @@
 <%= c 'admin/form/wrapper', model: redirect, wrapped_class:"max-w-xl mx-auto" do %>
-  <%= form_with(model: redirect, class: "contents space-y-4") do |form| %>
+  <%= form_with(model: redirect, class: "contents space-y-4", html: {"data-controller": "admin--unsaved-changes", id: "redirect-form"}) do |form| %>
     <%= form.tf :from, wrapped_class: "sm:col-span-2", required: true %>
     <%= form.tf :to, wrapped_class: "sm:col-span-2", required: true %>
     <div class="flex space-x-4">
