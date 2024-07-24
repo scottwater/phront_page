@@ -1,5 +1,5 @@
 <div <%= merged_classes_class_attribute %>>
-    <%= form.label name, label, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+    <%= c 'admin/form/label', name:, form:, label: %>
     <%= form.text_area name,
       rows: rows,
       data: {
