@@ -88,10 +88,12 @@ class PagesTest < ApplicationSystemTestCase
 
   def sign_in_execute_steps_and_return_page(name: SecureRandom.hex(10), signin: true)
     sign_in_as(authors(:scott)) if signin
+
     within("#page-form") do
       click_on "Options"
       fill_in "page_name", with: name
       yield(name)
+      sleep 1 if ENV["CI"]
     end
     # Name is not ideal since it is not unique. However, since slug
     # can be changed based on page/etc it is the best we can do.
