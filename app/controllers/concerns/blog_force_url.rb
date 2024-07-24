@@ -7,7 +7,9 @@ module BlogForceUrl
   def ensure_base_url_if_forced
     if force_base_url?
       if !request.url.starts_with?(Current.blog_config.settings.base_url)
-        redirect_to Current.blog_config.settings.base_url + request.path, allow_other_host: true
+        uri = URI.parse(Current.blog_config.settings.base_url)
+        uri.path = request.path
+        redirect_to uri.to_s, allow_other_host: true
       end
     end
   end
