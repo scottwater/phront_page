@@ -1,7 +1,7 @@
 <%= render Blog::Pages::Wrapper.new(page:, next:) do %>
   <div class="divide-y divide-gray-200 dark:divide-gray-700 max-w-4xl mx-auto">
     <% posts.each do |post| %>
-      <article class="pb-6">
+      <article class="py-6">
           <h2 class="not-format format-sm">
               <a class="hover:underline" href="<%= post.slug %>"><%= post.title %></a>
           </h2>
