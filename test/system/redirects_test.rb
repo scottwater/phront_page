@@ -39,10 +39,14 @@ class RedirectsTest < ApplicationSystemTestCase
   end
 
   test "should destroy Redirect" do
-    visit redirects_url(@redirect)
+    visit redirects_url
     sign_in_as(authors(:scott), remember_me: true)
-    assert_current_path redirects_url(@redirect)
-    click_on "Delete", match: :first
+    first_td_content_before = find("table tbody tr:first-child td:first-child").text
+    accept_confirm do
+      click_on "Delete", match: :first
+    end
+    assert_current_path redirects_url
     assert_text "Redirect was successfully destroyed"
+    assert_no_text first_td_content_before
   end
 end

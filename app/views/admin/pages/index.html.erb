@@ -13,7 +13,8 @@
         <%= row.with_action(text: "View", url: page.slug, target: "_blank") %>
         <%= row.with_action(text: "Edit", url: edit_page_path(page.id)) %>
         <% if page.deletable? %>
-          <%= row.with_action(text: "Delete", url: page, data: {turbo_method: :delete}) %>
+          <%= row.with_action(text: "Delete", url: page, data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this page? - #{page.name}"}) %>
+
         <% end %>
       <% end %>
     <% end %>

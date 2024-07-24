@@ -9,7 +9,7 @@
         <%= row.with_cell { redirect.to } %>
         <%= row.with_action(text: "Test", url: redirect.from, target: "_blank") %>
         <%= row.with_action(text: "Edit", url: edit_redirect_path(redirect)) %>
-        <%= row.with_action(text: "Delete", url: redirect, data: {turbo_method: :delete}) %>
+        <%= row.with_action(text: "Delete", url: redirect, data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this redirect?"}) %>
       <% end %>
     <% end %>
 <% end %>

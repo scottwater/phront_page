@@ -13,7 +13,7 @@
           <%= row.with_action(text: "Draft", url: nil) %>
         <% end %>
         <%= row.with_action(text: "Edit", url: edit_post_path(post.id)) %>
-        <%= row.with_action(text: "Delete", url: post, data: {turbo_method: :delete}) %>
+        <%= row.with_action(text: "Delete", url: post, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this post? - #{post.title}" }) %>
       <% end %>
     <% end %>
 <% end %>
