@@ -8,6 +8,7 @@ class Admin::Form::Drawer::Component < Admin::AdminViewComponent
     super(position:, horizontal:, vertical:)
   end
   # TODO - There is an issue with Bottom position. It will render the drawer open by default
+  # TailwindCSS is not picking up classes when they are on the same line in this file
   style do
     base {
       %w[
@@ -21,16 +22,54 @@ class Admin::Form::Drawer::Component < Admin::AdminViewComponent
     }
     variants {
       position {
-        left { %w[top-16 left-0 -translate-x-full] }
-        right { %w[top-16 right-0 translate-x-full] }
-        top { %w[top-0 left-0 right-0 -translate-y-full] }
-        bottom { %w[bottom-0 left-0 right-0 overflow-y-auto transform-none] }
+        left {
+          %w[
+            top-16
+            left-0
+            -translate-x-full
+          ]
+        }
+        right {
+          %w[
+            top-16
+            right-0
+            translate-x-full
+          ]
+        }
+        top {
+          %w[
+            top-0
+            left-0
+            right-0
+            -translate-y-full
+          ]
+        }
+        bottom {
+          %w[
+            bottom-0
+            left-0
+            right-0
+            overflow-y-auto
+            transform-none
+          ]
+        }
       }
       horizontal {
-        yes { %w[h-screen overflow-y-auto w-80 md:w-1/2] }
+        yes {
+          %w[
+            h-screen
+            overflow-y-auto
+            w-80
+            md:w-1/2
+          ]
+        }
       }
       vertical {
-        yes { %w[w-full] }
+        yes {
+          %w[
+            w-full
+          ]
+        }
       }
     }
   end
