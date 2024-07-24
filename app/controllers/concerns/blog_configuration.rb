@@ -1,7 +1,7 @@
 module BlogConfiguration
   extend ActiveSupport::Concern
   included do
-    before_action :set_blog_config
+    before_action :set_blog_config, prepend: true
   end
 
   def set_blog_config

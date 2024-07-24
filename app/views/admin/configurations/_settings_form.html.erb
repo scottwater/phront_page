@@ -1,6 +1,7 @@
 <%= c 'admin/form/wrapper', model: config, title: "Configuration Settings" do %>
   <%= form_with(model: config, url: configuration_path(:settings), method: :patch, class: "contents space-y-4") do |form| %>
     <%= form.tf :base_url, required: true, help: "Your Blog's URL" %>
+    <%= form.cb :force_base_url, help: "Do you want to force the base url to be the same as the blog's URL? This will redirect any non-matching URLs to the base URL." %>
     <%= form.ta :header, help: "Code/Styles/etc to be included in the head of every page" %>
     <%= form.ta :footer, help: "Code/Styles/etc to be included in the footer of every page" %>
     <div class="flex space-x-4">

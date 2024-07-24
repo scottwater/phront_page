@@ -1,5 +1,6 @@
 class BlogController < ApplicationController
   include BlogConfiguration
+  include BlogForceUrl
 
   def show
     case Blog::FetchBlogContentFromRequestService.call(slug:, redirected:)
