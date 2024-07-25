@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class Blog::FetchBlogContentFromRequestServiceTest < ActiveSupport::TestCase

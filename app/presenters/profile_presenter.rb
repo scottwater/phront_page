@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProfilePresenter < Keynote::Presenter
   presents :author
   delegate :email, :bio, :id, to: :author

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :import do
   task micro_blog: :environment do
     Post.delete_all

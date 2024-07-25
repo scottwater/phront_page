@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Form::BaseComponent < Admin::AdminViewComponent
   option :name
   option :form

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationViewComponentPreview < ViewComponentContrib::Preview::Base
   class SkippedPreviewComponent < ApplicationViewComponent
     option :text, default: -> { "Please see comments for why this was skipped" }

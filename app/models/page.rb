@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Page < ApplicationRecord
   include Redirect::Content
   enum :page_type, %w[home search content].index_by(&:itself), suffix: :page, default: :content

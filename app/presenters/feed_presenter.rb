@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FeedPresenter < Keynote::Presenter
   presents :post
   delegate :image_url, :html, :slug, :summary, :id, to: :post

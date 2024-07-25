@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationService
   extend Dry::Initializer
   attr_accessor :attributes

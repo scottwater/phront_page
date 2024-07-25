@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotReservedPathValidator < ActiveModel::EachValidator
   RESERVED_PREFIXES = ["/rails/", "/blobs", "/admin"].freeze
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TailwindInlineSvgTransformer < InlineSvg::CustomTransformation
   def transform(doc)
     with_svg(doc) do |svg|

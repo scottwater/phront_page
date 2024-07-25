@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 unless Author.any?
   Author.create!(email: "temp@phrontpage.com", password: SecureRandom.hex(20))
 end

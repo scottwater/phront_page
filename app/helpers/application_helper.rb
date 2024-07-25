@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def component_class(name)
     name.to_s.camelize.constantize::Component

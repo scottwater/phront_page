@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BlogHelper
   def navigation_pages
     @navigation_pages ||= Page.navigation

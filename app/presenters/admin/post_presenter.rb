@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::PostPresenter < Keynote::Presenter
   presents :post
   delegate :slug, :summary, :id, to: :post

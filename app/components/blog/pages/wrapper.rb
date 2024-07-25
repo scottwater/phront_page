@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Blog::Pages::Wrapper < Blog::BlogViewComponent
   option :page
   option :next, default: -> { true }

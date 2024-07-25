@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Config::Blog::Meta < Config
   typed_store :data, coder: ActiveRecord::TypedStore::IdentityCoder do |s|
     s.string :name, default: "PhrontPage"

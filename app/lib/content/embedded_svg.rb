@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Content::EmbeddedSvg
   extend self
   def merge(svg, klass = nil)

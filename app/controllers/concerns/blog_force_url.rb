@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BlogForceUrl
   extend ActiveSupport::Concern
   included do

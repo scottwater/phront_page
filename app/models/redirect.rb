@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Redirect < ApplicationRecord
   normalizes :from, with: ->(value) { "/#{value}".gsub("//", "/") }
   normalizes :to, with: ->(value) { value.starts_with?("http") ? value.strip : "/#{value}".gsub("//", "/") }

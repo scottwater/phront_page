@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ComponentFormHelpers
   # NOTE: Changes to this file require a server restart.
 

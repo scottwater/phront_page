@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Blog::FetchBlogContentFromRequestService < ApplicationService
   option :slug
   option :redirected, optional: true, default: proc { 0 }

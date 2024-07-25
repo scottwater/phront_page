@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Config::Blog::Socials < Config
   typed_store :data, coder: ActiveRecord::TypedStore::IdentityCoder do |s|
     s.string :github_url, blank: false

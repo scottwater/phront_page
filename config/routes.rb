@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   scope module: "admin", path: "admin" do
     get "/first-run", to: "first_run#new", as: :first_run

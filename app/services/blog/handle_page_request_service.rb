@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Blog::HandlePageRequestService < ApplicationService
   option :page
   option :paging_id, optional: true, default: proc { 1 }

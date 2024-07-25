@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::AccountController < Admin::BaseController
   def edit
     @author = Current.author

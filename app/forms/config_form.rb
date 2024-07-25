@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConfigForm
   extend Dry::Initializer
   attr_accessor :attributes

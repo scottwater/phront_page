@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DropHelpers
   def drop_file_div(file_name, element_selector)
     file_path = Rails.root.join("test", "support", file_name)

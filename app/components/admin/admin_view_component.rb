@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::AdminViewComponent < ApplicationViewComponent
   def current_author
     Current.author

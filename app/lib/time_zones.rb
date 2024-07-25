@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TimeZones
   IANA_TO_RAILS_MAPPING = ActiveSupport::TimeZone::MAPPING.invert
 

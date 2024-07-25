@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Blog::BlogViewComponent < ApplicationViewComponent
   include BlogHelper
 

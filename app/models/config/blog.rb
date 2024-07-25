@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Config::Blog
   def socials = (@socials ||= Config.get("blog/socials"))
 

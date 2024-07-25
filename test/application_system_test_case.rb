@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 Capybara.register_driver :searls do |app|

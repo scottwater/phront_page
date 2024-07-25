@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::ConfigurationsController < Admin::BaseController
   helper_method :edit_form_name
 

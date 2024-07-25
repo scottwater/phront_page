@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Component
   module Form
     module TestHelpers

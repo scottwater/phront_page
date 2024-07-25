@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::FirstRunController < Admin::BaseController
   layout "blank"
   skip_before_action :authenticate, only: %i[new create]

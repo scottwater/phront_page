@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Config < ApplicationRecord
   validates :key, presence: true, uniqueness: true
   normalizes :key, with: ->(value) { value.parameterize }

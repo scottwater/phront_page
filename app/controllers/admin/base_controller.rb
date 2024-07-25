@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::BaseController < ApplicationController
   around_action :set_time_zone, if: -> { Current.author&.time_zone }
 
