@@ -90,7 +90,6 @@ class PagesTest < ApplicationSystemTestCase
     sign_in_as(authors(:scott)) if signin
 
     within("#page-form") do
-      click_on "Options"
       fill_in "page_name", with: name
       yield(name)
     end
