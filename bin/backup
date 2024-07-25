@@ -7,6 +7,7 @@ s3_secret=$BACKUP_S3_SECRET
 bucket=$BACKUP_S3_BUCKET
 backup_db_passphrase=$BACKUP_S3_DB_PASSPHRASE
 data_directory=$SQLITE_DATABASE_DIRECTORY
+s3_region=${BACKUP_S3_REGION:-s3}
 # ensure each backup has the same date key
 date_key=$(date '+%Y-%m-%d-%H-%M-%S')
 
@@ -32,7 +33,7 @@ function backupToS3()
     -H "Date: $date" \
     -H "Content-Type: $content_type" \
     -H "Authorization: AWS ${s3_key}:$signature" \
-    "https://$bucket.s3.amazonaws.com/$gpg_backup_file_name"
+    "https://$bucket.$s3_region.amazonaws.com/$gpg_backup_file_name"
 
   rm "$backup_file_name.gz"
   rm "/tmp/$gpg_backup_file_name"
