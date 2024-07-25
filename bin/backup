@@ -2,10 +2,6 @@
 # Verify this script has execute permissions
 set -e
 
-# Hatchbox settings for ENVs
-cd /home/deploy/howivscode/current
-eval "$(/home/deploy/.asdf/bin/asdf vars)"
-
 s3_key=$BACKUP_S3_KEY
 s3_secret=$BACKUP_S3_SECRET
 bucket=$BACKUP_S3_BUCKET
