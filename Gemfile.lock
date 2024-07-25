@@ -179,7 +179,7 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    honeybadger (5.15.1)
+    honeybadger (5.15.3)
     htmlbeautifier (1.4.3)
     htmlentities (4.3.4)
     i18n (1.14.5)
