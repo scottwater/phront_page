@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+if ! gem list magic_frozen_string_literal -i --silent; then
+	echo "Installing magic_frozen_string_literal..."
+	gem install magic_frozen_string_literal
+fi
+
+exec magic_frozen_string_literal .
