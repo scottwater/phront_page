@@ -12,10 +12,12 @@ class Page < ApplicationRecord
   validates :page_type, uniqueness: true, if: -> { home_page? || search_page? }
   normalizes :og_image_url, :image_url, :description, :title, :template, with: ->(value) { value.blank? ? nil : value }
   has_many :posts
+  # overrides default ordering in ApplicationRecord
+  scope :ordered, -> { order(:name) }
   scope :home_page, -> { find_sole_by(page_type: :home) }
   scope :search_page, -> { find_sole_by(page_type: :search) }
   scope :content_pages, -> { where(page_type: :content) }
-  scope :navigation, -> { where(main_menu: true, page_type: :content).order(:name) }
+  scope :navigation, -> { where(main_menu: true, page_type: :content).ordered }
 
   def deletable?
     page_type == "content"
