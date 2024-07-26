@@ -1,23 +1,24 @@
-<footer
-  class="
-    fixed bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow
-    md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800
-    dark:border-gray-600
-  ">
+<footer class="fixed bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow dark:bg-gray-800dark:border-gray-600">
+  <div class="md:flex md:items-center md:justify-between md:p-6">
   <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">©
     <%= Time.current.year %> <%= meta.copyright %>
   </span>
   <% if social_networks&.any? %>
-    <ul
-      class="
-        flex items-center text-sm font-medium text-gray-500
-        dark:text-gray-400 h-full
-      ">
+    <ul class="flex items-center text-sm font-medium text-gray-500dark:text-gray-400 h-full">
       <% social_networks.each do |network| %>
         <li class="flex items-center flex-shrink-0 w-8">
           <%= link_to svg("networks/#{network[:name]}", title: "Check out #{network[:username]} on #{network[:name]}", class: "hover:fill-slate-100"), network[:url], class: "hover:underline hover:color-red-700 me-4 md:me-6" %>
         </li>
       <% end %>
     </ul>
+  <% end %>
+  </div>
+  <% if settings.powered_by? %>
+  <div id="powered-by" class="flex justify-start sm:justify-center space-x-1 text-sm">
+    <span>Powered by</span>
+    <a href="https://phrontpage.com" class="self-center font-semibold whitespace-nowrap text-primary-500 dark:text-white">
+      PhrontPage
+    </a>
+  </div>
   <% end %>
 </footer>
