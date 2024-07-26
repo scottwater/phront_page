@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "minitest/reporters"
+Minitest::Reporters.use!
+
 ENV["RAILS_ENV"] ||= "test"
 ENV["UPLOADED_ASSET_BASE_PATH"] = nil
 require_relative "../config/environment"
