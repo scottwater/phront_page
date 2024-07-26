@@ -8,6 +8,8 @@ Capybara.register_driver :searls do |app|
     headless: (false unless ENV["CI"] || ENV["PLAYWRIGHT_HEADLESS"]))
 end
 
+Capybara.server = :puma, {Silent: true} # To clean up your test output
+
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :searls
 
