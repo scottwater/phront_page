@@ -59,8 +59,9 @@ class Admin::Form::Drawer::Component < Admin::AdminViewComponent
           %w[
             h-screen
             overflow-y-auto
-            w-80
-            md:w-1/2
+            w-full
+            sm:w-3/4
+            lg:w-1/2
           ]
         }
       }
