@@ -3,8 +3,20 @@
 require "test_helper"
 
 class ConfigTest < ActiveSupport::TestCase
+  test "should not display powered by by default" do
+    settings = Config::Blog.new.settings
+    refute settings.powered_by?
+  end
+
+  test "setting some settings should display powered by" do
+    settings = Config::Blog.new.settings
+    settings.base_url = "https://scottw.com"
+    settings.save!
+    refute settings.powered_by?
+  end
+
   test "should always find or create a config" do
-    Config.delete_all
+    Config.unscoped.delete_all
     blog_config = Config::Blog.new
     assert blog_config.socials.new_record?
     assert blog_config.meta.new_record?

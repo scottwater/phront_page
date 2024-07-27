@@ -3,7 +3,7 @@
 class Config::Blog::Settings < Config
   typed_store :data, coder: ActiveRecord::TypedStore::IdentityCoder do |s|
     s.string :base_url, null: false
-    s.string :powered_by, null: false
+    s.boolean :powered_by, default: false
     s.boolean :force_base_url, default: false
     s.string :header, null: true, blank: false
     s.string :footer, null: true, blank: false
