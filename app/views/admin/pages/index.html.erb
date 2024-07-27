@@ -7,7 +7,7 @@
 
     <% @pages_data.records.map {|page| page}.each do |page| %>
       <% list.with_row do |row| %>
-        <%= row.with_cell { page.name } %>
+        <%= row.with_cell { link_to page.name, edit_page_path(page.id), class: "hover:underline" } %>
         <%= row.with_cell { page.slug } %>
         <%= row.with_cell { page.main_menu?.to_s } %>
         <%= row.with_action(text: "View", url: page.slug, target: "_blank") %>

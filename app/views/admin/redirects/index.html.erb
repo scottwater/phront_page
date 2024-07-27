@@ -5,7 +5,7 @@
     <% component.with_header { "To "} %>
     <% @redirect_data.records.each do |redirect| %>
       <% component.with_row do |row| %>
-        <%= row.with_cell {redirect.from } %>
+        <%= row.with_cell { link_to redirect.from, edit_redirect_path(redirect.id), class: "hover:underline" } %>
         <%= row.with_cell { redirect.to } %>
         <%= row.with_action(text: "Test", url: redirect.from, target: "_blank") %>
         <%= row.with_action(text: "Edit", url: edit_redirect_path(redirect)) %>
