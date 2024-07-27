@@ -26,6 +26,7 @@ class Admin::Form::Drawer::Component < Admin::AdminViewComponent
           %w[
             top-16
             left-0
+            border-r
             -translate-x-full
           ]
         }
@@ -34,6 +35,7 @@ class Admin::Form::Drawer::Component < Admin::AdminViewComponent
             top-16
             right-0
             translate-x-full
+            border-l
           ]
         }
         top {
@@ -62,6 +64,7 @@ class Admin::Form::Drawer::Component < Admin::AdminViewComponent
             w-full
             sm:w-3/4
             lg:w-1/2
+            border-gray-200
           ]
         }
       }
