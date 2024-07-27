@@ -1,19 +1,19 @@
 <%= c 'admin/form/wrapper', model: page do %>
   <%= form_with(model: page, class: "contents", html: {"data-controller": "admin--unsaved-changes", id: "page-form"}) do |form| %>
-    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-      <%= form.tf :name, label: false, placeholder: "Page Name (required)", wrapped_class: "sm:col-span-2", required: true %>
+    <div class="grid gap-4 grid-cols-1 sm:gap-6">
+      <%= form.tf :name, label: false, placeholder: "Page Name (required)", required: true %>
       <%= form.mda :markdown, label: false, placeholder: "Page Content (markdown...optional)", rows: 16, wrapped_class: "sm:col-span-2"%>
       <%= c 'admin/form/drawer' do |dialog| %>
-        <%= form.sf :template, Pages.select_list, wrapped_class: "sm:col-span-2", help: "This controls the how posts are displayed on this page" %>
+        <%= form.sf :template, Pages.select_list, help: "This controls the how posts are displayed on this page" %>
         <% if page.content_page? %>
-          <%= form.tf :slug, wrapped_class: "sm:col-span-2", help: "The link used for this page. Redirects on changes are automatic, but do not change often." %>
-          <%= form.cb :main_menu, wrapped_class: "sm:col-span-2", help: "When checked, this page will be displayed in the blogs main navigation (and footer)" %>
-          <%= form.cb :exclude_posts_from_home_page, label: "Exclude Posts from Home Page", wrapped_class: "sm:col-span-2", help: "Posts only be visible on this page" %>
+          <%= form.tf :slug, help: "The link used for this page. Redirects on changes are automatic, but do not change often." %>
+          <%= form.cb :main_menu, help: "When checked, this page will be displayed in the blogs main navigation (and footer)" %>
+          <%= form.cb :exclude_posts_from_home_page, label: "Exclude Posts from Home Page", help: "Posts only be visible on this page" %>
         <% end %>
-        <%= form.img_drop :og_image_url, wrapped_class: "sm:col-span-2", label: "Open Graph Image", help: "Any image type. This image will be used to set your open graph image" %>
-        <%= form.img_drop :image_url, wrapped_class: "sm:col-span-2", label: "Page Image", help: "Any image type. This image will be used on your page (if the page supports images)" %>
-        <%= form.ta :description, rows: 4, wrapped_class: "sm:col-span-2" %>
-        <%= form.tf :title, wrapped_class: "sm:col-span-2", help: "This sets the Title elemement in the head of your page" %>
+        <%= form.img_drop :og_image_url, label: "Open Graph Image", help: "Any image type. This image will be used to set your open graph image" %>
+        <%= form.img_drop :image_url, label: "Page Image", help: "Any image type. This image will be used on your page (if the page supports images)" %>
+        <%= form.ta :description, rows: 4 %>
+        <%= form.tf :title, help: "This sets the Title elemement in the head of your page" %>
       <% end %>
     </div>
     <div class="w-full flex justify-between items-center px-4">
