@@ -1,25 +1,25 @@
 # PhrontPage
 
-**Warning**: _This is a work in progress. It is at the stage that it hits many of my personal goals, but I expect it to continue to evolve, especially if others are interested in using and contributing to it._
+**Warning**: _This is a work in progress. It is at the stage that it hits many of my personal goals. Still, I expect it to continue to evolve, especially if others are interested in using and contributing to it._
 
-PhrontPage is a Rails application using the Litestack stack. You can host it anywhere you can host a Rails app (that provides persistent storage for the database[^1]).
+## Why PhrontPage?
 
-I have built (.Text, CommunityServer, GraffitiCMS) and used (Octopress, Jekyll, 11ty, Micro.blog, Wordpress, Radio) a wide variety of blogging applications in the past. I wanted to build a blogging application that was simple, easy to host/deploy/update/maintain, and that I could use to write and publish my own content.
+I have opinions too many opinions about blogging.
 
-Core Wants:
+## Why not use WordPress?
 
-* Simple to use, easy to host/deploy/update/maintain
-* Dynamic, not static
-* Minimal interface
-* Act as a personal content hub. Eventualy, I would like content to start here and then be distributed to X/Mastodon/Threads/etc.
+WordPress is perfectly suitable for most. I recommend you use it. I wanted my content to live in something I understood and felt comfortable modifying from top to bottom. If this sounds like you and you enjoy Rails, I think you will like the experience.
 
+## Why not a static site generator?
+
+The slight friction of using a static site generator can be good, but it was in the way for me. I have a few features in mind that get us close to most of a static site generator the speed without the friction.
 
 ## Current Main Feature Set
 - Pages
 - Posts
-- Posts can be published to pages
-- Built in search (Litestack!)
-- Built in redirects (you can define them, automatically created when a page or post URL changes)
+- Posts can be published on pages
+- Built-in search (Litestack!)
+- Built-in redirects (you can define them, automatically created when a page or post URL changes)
 - Markdown editor with assets drag/drop/paste support
 
 ## Local Setup
@@ -31,33 +31,33 @@ Core Wants:
 
 ## Deployment
 
-Provider steps coming soon. For now things to remmember:
-1. Ensure your database is backed up. There is a script (bin/backup) that will help you do this for you to S3. LiteStream coming soon.
-1. I recommend using R2/S3 for your assets. You can configure this in `config/storage.yml`.
+Provider steps are coming soon. For now, things to remember:
+1. Ensure your database is backed up. There is a script (bin/backup) that will help you do this for you to S3. Livestream is coming soon.
+1. I recommend using R2 for your assets, but any S3-compatible provider will work (or you can use local storage). You can configure this in `config/storage.yml`.
 1. ENV variables you need to set:
-  - `RAILS_MASTER_KEY` - This is used for encrypting the session cookie. You can generate a random key with `bin/rails secret`
-  - `ACTIVE_STORAGE_SERVICE` - This is used to configure the storage service.
+  - `RAILS_MASTER_KEY` - This is used to encrypt the session cookie. You can generate a random key with `bin/rails secret`
+  - `ACTIVE_STORAGE_SERVICE` - This is used to configure the storage service. **default: local**
   - `UPLOAD_PREFIX` - This is used to prefix uploaded files with a path. This is useful if you are using S3 for your assets. If you are using local storage, you can leave this blank. (only used with S3WithPrefixService)
   - `UPLOADED_ASSET_BASE_PATH` - This is used to prefix uploaded files with a path (only needed with an S3 compatible service. If you are using local storage, you can leave this blank.)
-1. See below for creating your login account.
+1. See below for instructions on how to create your login account.
 
 ## Creating Your Login Account
 
-This may change, but for now you can create an account with the following code in the Rails console:
+This may change, but for now, you can create an account with the following code in the Rails console:
 
 ```ruby
 Author.create!(email: "YOUR_EMAIL", password: "YOUR_PASSWORD")
 ```
 
-Alternatively, if there are no authors in the database or the only author is the seeded temp author, you can navigate to /admin and you will be prompted to create an author account. Once the author account is created all others need to be done via the command line.
+Alternatively, if there are no authors in the database or the only author is the seeded temp author, you can navigate to /admin and be prompted to create an author account. Once the author account is created, all others need to be done via the command line.
 
-Also note, there is no password reset functinality. I did not want to require working email/etc. Additional authors can be created via the command line. Passwords can be changed in the admin interface.
+Also, note that there is no password reset functionality. I did not want to require working email, etc. Additional authors can be created via the command line, and passwords can be changed in the admin interface.
 
-I am very open to suggestions for how to improve this while keepping it simple and dependency lite.
+I am very open to suggestions on improving this while keeping it simple and minimizing dependencies.
 
 ## Testing
 
-See local setup above. Run `bin/rails test:all`
+See the local setup above. Run `bin/rails test:all`
 
 ## Future Work
 
@@ -69,4 +69,4 @@ See local setup above. Run `bin/rails test:all`
 1. Better code formatting
 1. Better OG image support
 
-[^1]: There are some interesting alternatives for hosting SQLite databases and I hope to explore them shortly.
+[^1]: There are some interesting alternatives for hosting SQLite databases, and I hope to explore them shortly.
