@@ -13,7 +13,7 @@ class Admin::PostPresenter < Keynote::Presenter
   end
 
   def title
-    (post.title.presence || post.summary).truncate(50)
+    (post.title.presence || post.summary)&.truncate(50)
   end
 
   def to_model
