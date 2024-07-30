@@ -69,4 +69,12 @@ See the local setup above. Run `bin/rails test:all`
 1. Better code formatting
 1. Better OG image support
 
+## Shoutouts
+
+There is a monumental amount of open source software that this project relies on. It is impossible to list them all, but there are a few that I am using directly that I want to call out and thank:
+
+1. [Litestack](https://github.com/oldmoe/litestack) - Litestack is a lightweight, fast, and flexible web framework for Ruby on Rails.
+1. [Flowbite](https://flowbite.com) - Flowbite is a library of accessible, free, and open source Tailwind CSS components (and of course Tailwind CSS itself).
+1. [ViewComponentContrib](https://github.com/viewcomponent-contrib/view_component) - ViewComponentContrib is a collection of useful ViewComponent extensions.
+
 [^1]: There are some interesting alternatives for hosting SQLite databases, and I hope to explore them shortly.
