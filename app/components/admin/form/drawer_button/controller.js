@@ -4,14 +4,14 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static values = { position: String, drawerId: String }
   connect() {
-    document.addEventListener("keydown", this.handleKeyDown.bind(this))
+    document.addEventListener("keydown", this.handleKeyDown)
   }
 
   disconnect() {
-    document.removeEventListener("keydown", this.handleKeyDown.bind(this))
+    document.removeEventListener("keydown", this.handleKeyDown)
   }
 
-  handleKeyDown(event) {
+  handleKeyDown = (event) => {
      if (event.ctrlKey && event.key === "o") {
       if (this.isElementVisible(`button[data-drawer-hide=drawer-${this.drawerIdValue}]`)) {
         document.querySelector(`button[data-drawer-hide=drawer-${this.drawerIdValue}]`).click()
