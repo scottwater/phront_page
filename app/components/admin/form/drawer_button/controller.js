@@ -12,7 +12,7 @@ export default class extends Controller {
   }
 
   handleKeyDown(event) {
-     if ((event.altKey && event.key === "o") || (event.key === "ø")) {
+     if (event.ctrlKey && event.key === "o") {
       if (this.isElementVisible(`button[data-drawer-hide=drawer-${this.drawerIdValue}]`)) {
         document.querySelector(`button[data-drawer-hide=drawer-${this.drawerIdValue}]`).click()
       }
