@@ -395,7 +395,7 @@ GEM
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
-    view_component-contrib (0.2.2)
+    view_component-contrib (0.2.3)
       ruby-next-core (>= 0.15.0)
       view_component
     web-console (4.2.1)
@@ -462,7 +462,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   view_component (~> 3.13)
-  view_component-contrib (~> 0.2.2)
+  view_component-contrib (~> 0.2.3)
   web-console
 
 RUBY VERSION
