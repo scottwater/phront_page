@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Form::Drawer::Component < Admin::AdminViewComponent
+  option :id
   option :position, default: proc { :right }
   def style
     horizontal = %i[left right].include?(position)

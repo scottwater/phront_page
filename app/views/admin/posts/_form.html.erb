@@ -3,7 +3,7 @@
     <div class="grid gap-4 sm:gap-6 mt-2">
       <%= form.tf :title, label: false, placeholder: "Post Title (optional)" %>
       <%= form.mda :markdown, label: false, rows: 16, placeholder: "Your overly witty post content (written in markdown)", required: true %>
-      <%= c 'admin/form/drawer' do %>
+      <%= c 'admin/form/drawer', id: "post-form-drawer" do %>
         <%= form.sf :page_id, Pages.select_list_for_posts_with_no_page, selected: post.page_id %>
         <%= form.tf :slug %>
         <%= form.tf :published_at, hint: "If empty, the post is not published. If a date is present, the post is not visible until after the date" %>
@@ -15,7 +15,7 @@
     </div>
     <div class="w-full flex justify-between items-center px-4">
       <%= form.sb button_type: "wide" %>
-      <%= c 'admin/form/drawer_button', text: "Options" %>
+      <%= c 'admin/form/drawer_button', text: "Options", drawer_id: "post-form-drawer" %>
     </div>
   <% end %>
 <% end %>

@@ -2,7 +2,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static values = { position: String }
+  static values = { position: String, drawerId: String }
   connect() {
     document.addEventListener("keydown", this.handleKeyDown.bind(this))
   }
@@ -13,8 +13,8 @@ export default class extends Controller {
 
   handleKeyDown(event) {
      if ((event.altKey && event.key === "o") || (event.key === "ø")) {
-      if (this.isElementVisible(`button[data-drawer-hide=drawer-${this.positionValue}]`)) {
-        document.querySelector(`button[data-drawer-hide=drawer-${this.positionValue}]`).click()
+      if (this.isElementVisible(`button[data-drawer-hide=drawer-${this.drawerIdValue}]`)) {
+        document.querySelector(`button[data-drawer-hide=drawer-${this.drawerIdValue}]`).click()
       }
       else {
         this.element.click()
