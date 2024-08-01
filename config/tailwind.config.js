@@ -10,7 +10,8 @@ module.exports = {
   ],
   // With TailwindCSS-Rails 2.6.3 classes from .rb variants are not getting included consistently
   safelist: [
-   // 'md:w-1/2',
+    "decoration-dashed"
+   // 'md:w-1/"2',
     //'translate-x-full'
   ],
   darkMode: 'class',

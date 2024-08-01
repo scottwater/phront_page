@@ -2,6 +2,7 @@
 
 class Admin::Form::Drawer::Component < Admin::AdminViewComponent
   option :id
+  option :text, optional: true
   option :position, default: proc { :right }
   def style
     horizontal = %i[left right].include?(position)
