@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :redirects, except: [:show]
     resources :configurations
     match "/preview-posts", to: "preview_posts#show", via: [:patch, :post]
+    match "/preview-pages", to: "preview_pages#show", via: [:patch, :post]
     get "/profile" => "profile#edit", :as => "edit_profile"
     patch "/profile" => "profile#update", :as => "update_profile"
     get "/account" => "account#edit", :as => "edit_account"

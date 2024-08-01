@@ -15,10 +15,19 @@
         <%= form.ta :description, rows: 4 %>
         <%= form.tf :title, help: "This sets the Title elemement in the head of your page" %>
       <% end %>
+      <%= c 'admin/form/drawer', id: "page-preview-drawer", text: "Preview", data: {controller: "admin--preview", "admin--preview-form-id-value": "page-form", "admin--preview-url-value": preview_pages_path} do %>
+       <div data-admin--preview-target="spinner" class="hidden">
+          <%= c 'admin/spinner' %>
+       </div>
+       <div id="preview" data-admin--preview-target="preview"></div>
+      <% end %>
     </div>
     <div class="w-full flex justify-between items-center px-4">
       <%= form.sb button_type: "wide" %>
-      <%= c 'admin/form/drawer_button', text: "Options", drawer_id: "page-form-drawer",  modifier_key: "ctrlKey", key: "o"  %>
+      <div class="flex space-x-4">
+        <%= c 'admin/form/drawer_button', text: "Options", drawer_id: "page-form-drawer",  modifier_key: "ctrlKey", key: "o" %>
+        <%= c 'admin/form/drawer_button', text: "Preview", drawer_id: "page-preview-drawer", modifier_key: "ctrlKey", key: "p" %>
+      </div>
     </div>
   <% end %>
 <% end %>
