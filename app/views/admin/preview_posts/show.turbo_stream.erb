@@ -1,0 +1,9 @@
+<% post = k(:post, @post) %>
+<%= turbo_stream.update "preview" do %>
+<div class="format">
+  <h1 class="no-format font-bold text-2xl <%= "underline decoration-dashed" unless post.title? %>"><%= post.title %></h1>
+  <%= @post.summary %>
+  <hr>
+  <%== @post.html %>
+</div>
+<% end %>
