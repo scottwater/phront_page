@@ -55,4 +55,8 @@ class ApplicationViewComponent < ViewComponentContrib::Base
   def self.stimulus_controller
     name.underscore.dasherize.gsub("/", "--")
   end
+
+  def dasherized_attributes
+    tag.attributes(attributes.deep_transform_keys { |key| key.to_s.dasherize })
+  end
 end
