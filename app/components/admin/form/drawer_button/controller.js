@@ -2,7 +2,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static values = { position: String, drawerId: String }
+  static values = { position: String, drawerId: String, modifierKey: String, key: String }
   connect() {
     document.addEventListener("keydown", this.handleKeyDown)
   }
@@ -12,7 +12,7 @@ export default class extends Controller {
   }
 
   handleKeyDown = (event) => {
-     if (event.ctrlKey && event.key === "o") {
+     if (this.isMatchToKeyboardShortcut(event)) {
       if (this.isElementVisible(`button[data-drawer-hide=drawer-${this.drawerIdValue}]`)) {
         document.querySelector(`button[data-drawer-hide=drawer-${this.drawerIdValue}]`).click()
       }
@@ -20,6 +20,19 @@ export default class extends Controller {
         this.element.click()
       }
     }
+  }
+
+  isMatchToKeyboardShortcut(event) {
+    return this.isMatchToModifierKey(event) && this.isMatchToKey(event)
+    //return  event.ctrlKey && event.key === "o"
+  }
+
+  isMatchToModifierKey(event) {
+    return this.hasModifierKeyValue && event[this.modifierKeyValue]
+  }
+
+  isMatchToKey(event) {
+    return this.hasKeyValue && event.key === this.keyValue
   }
 
   isElementVisible(selector) {
