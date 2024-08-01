@@ -1,6 +1,9 @@
-<% post = k(:post, @post) %>
+<% post = k("admin/post", @post) %>
 <%= turbo_stream.update "preview" do %>
 <div class="format">
+  <% if !post.published? %>
+    <h2 class="no-format font-bold text-xl text-red-700">Not published until: <%= post.published_at || "No date" %></h2>
+  <% end %>
   <h1 class="no-format font-bold text-2xl <%= "underline decoration-dashed" unless post.title? %>"><%= post.title %></h1>
   <%= post.summary %>
   <hr>
