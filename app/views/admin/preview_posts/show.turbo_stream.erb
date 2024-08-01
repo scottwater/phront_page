@@ -2,8 +2,8 @@
 <%= turbo_stream.update "preview" do %>
 <div class="format">
   <h1 class="no-format font-bold text-2xl <%= "underline decoration-dashed" unless post.title? %>"><%= post.title %></h1>
-  <%= @post.summary %>
+  <%= post.summary %>
   <hr>
-  <%== @post.html %>
+  <%== post.html %>
 </div>
 <% end %>
