@@ -28,7 +28,7 @@ gem "tailwind_merge"
 gem "tailwindcss-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
-gem "view_component-contrib", "~> 0.2.2"
+gem "view_component-contrib", "~> 0.2.3"
 gem "view_component", "~> 3.13"
 
 group :development, :test do
