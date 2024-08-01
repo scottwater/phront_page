@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 5cb5cad3224d03114313fbe28c4dd1374c313d8f
+  revision: 3af5ed31b63753a4d5ba5fe8eee885015203981c
   branch: 7-2-stable
   specs:
     actioncable (7.2.0.beta3)
@@ -28,7 +28,7 @@ GIT
       activesupport (= 7.2.0.beta3)
       nokogiri (>= 1.8.5)
       racc
-      rack (>= 2.2.4)
+      rack (>= 2.2.4, < 3.2)
       rack-session (>= 1.0.1)
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.2)
@@ -71,6 +71,7 @@ GIT
       i18n (>= 1.6, < 2)
       logger (>= 1.4.2)
       minitest (>= 5.1)
+      securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
     rails (7.2.0.beta3)
       actioncable (= 7.2.0.beta3)
@@ -341,6 +342,7 @@ GEM
       rubocop-ast (>= 1.31.1, < 2.0)
     ruby-next-core (1.0.3)
     ruby-progressbar (1.13.0)
+    securerandom (0.3.1)
     slowpoke (0.5.0)
       actionpack
       rack-timeout (>= 0.6)
