@@ -3,7 +3,7 @@
     <div class="grid gap-4 grid-cols-1 sm:gap-6">
       <%= form.tf :name, label: false, placeholder: "Page Name (required)", required: true %>
       <%= form.mda :markdown, label: false, placeholder: "Page Content (markdown...optional)", rows: 16, wrapped_class: "sm:col-span-2"%>
-      <%= c 'admin/form/drawer' do |dialog| %>
+      <%= c 'admin/form/drawer', id: "page-form-drawer", text: "Page Options" do  %>
         <%= form.sf :template, Pages.select_list, help: "This controls the how posts are displayed on this page" %>
         <% if page.content_page? %>
           <%= form.tf :slug, help: "The link used for this page. Redirects on changes are automatic, but do not change often." %>
@@ -18,7 +18,7 @@
     </div>
     <div class="w-full flex justify-between items-center px-4">
       <%= form.sb button_type: "wide" %>
-      <%= c 'admin/form/drawer_button', text: "Options" %>
+      <%= c 'admin/form/drawer_button', text: "Options", drawer_id: "page-form-drawer",  modifier_key: "ctrlKey", key: "o"  %>
     </div>
   <% end %>
 <% end %>
