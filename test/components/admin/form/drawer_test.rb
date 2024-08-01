@@ -14,6 +14,6 @@ class Admin::Form::Drawer::ComponentTest < ViewComponent::TestCase
   private
 
   def build_component(**)
-    Admin::Form::Drawer::Component.new(**)
+    Admin::Form::Drawer::Component.new(**, id: "drawer-id")
   end
 end
