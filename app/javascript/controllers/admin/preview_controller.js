@@ -48,6 +48,23 @@ export default class extends Controller {
     })
     if (response.ok) {
       this.spinnerTarget.classList.add("hidden")
+    } else {
+      try {
+        const errorMessage = await response.text
+        this.spinnerTarget.classList.add("hidden")
+        this.previewTarget.innerHTML = `<div class="bg-red-50 p-4 text-red-500">
+          <h1 class="font-bold text-4xl">Preview Failed</h1>
+          <p>${errorMessage}</p>
+        </div>`
+      } catch (e) {
+        this.spinnerTarget.classList.add("hidden")
+        this.previewTarget.innerHTML = `<div class="bg-red-50 p-4 text-red-500">
+            <h1 class="font-bold text-4xl">Preview Failed</h1>
+            <p>Status: ${response.statusCode}</p>
+            <p>Unable to read error details: ${e}</p>
+        </div>`
+
+      }
     }
   }
 }
