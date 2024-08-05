@@ -12,12 +12,7 @@
         <%= form.ta :description, rows: 4 %>
         <%= form.ta :summary, rows: 4 %>
       <% end %>
-      <%= c 'admin/form/drawer', id: "post-preview-drawer", text: "Preview", data: {controller: "admin--preview", "admin--preview-form-id-value": "post-form", "admin--preview-url-value": previews_path} do %>
-       <div data-admin--preview-target="spinner" class="hidden">
-          <%= c 'admin/spinner' %>
-       </div>
-       <div id="preview" data-admin--preview-target="preview"></div>
-      <% end %>
+      <%= c 'admin/form/preview', form_id: "post-form", drawer_id: "post-preview-drawer" %>
     </div>
     <div class="w-full flex justify-between items-center px-4">
       <%= form.sb button_type: "wide" %>
