@@ -15,7 +15,7 @@
         <%= form.ta :description, rows: 4 %>
         <%= form.tf :title, help: "This sets the Title elemement in the head of your page" %>
       <% end %>
-      <%= c 'admin/form/drawer', id: "page-preview-drawer", text: "Preview", data: {controller: "admin--preview", "admin--preview-form-id-value": "page-form", "admin--preview-url-value": preview_pages_path} do %>
+      <%= c 'admin/form/drawer', id: "page-preview-drawer", text: "Preview", data: {controller: "admin--preview", "admin--preview-form-id-value": "page-form", "admin--preview-url-value": previews_path} do %>
        <div data-admin--preview-target="spinner" class="hidden">
           <%= c 'admin/spinner' %>
        </div>

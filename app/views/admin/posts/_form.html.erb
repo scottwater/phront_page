@@ -12,7 +12,7 @@
         <%= form.ta :description, rows: 4 %>
         <%= form.ta :summary, rows: 4 %>
       <% end %>
-      <%= c 'admin/form/drawer', id: "post-preview-drawer", text: "Preview", data: {controller: "admin--preview", "admin--preview-form-id-value": "post-form", "admin--preview-url-value": preview_posts_path} do %>
+      <%= c 'admin/form/drawer', id: "post-preview-drawer", text: "Preview", data: {controller: "admin--preview", "admin--preview-form-id-value": "post-form", "admin--preview-url-value": previews_path} do %>
        <div data-admin--preview-target="spinner" class="hidden">
           <%= c 'admin/spinner' %>
        </div>

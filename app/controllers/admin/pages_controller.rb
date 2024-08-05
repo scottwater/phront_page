@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::PagesController < Admin::BaseController
+  include Admin::Params::Page
   before_action :set_page, only: %i[show edit update destroy]
 
   # GET /pages
@@ -56,10 +57,5 @@ class Admin::PagesController < Admin::BaseController
   # Use callbacks to share common setup or constraints between actions.
   def set_page
     @page = Page.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
-  def page_params
-    params.require(:page).permit(:name, :markdown, :html, :template, :slug, :main_menu, :og_image_url, :image_url, :description, :title, :exclude_posts_from_home_page)
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::PostsController < Admin::BaseController
+  include Admin::Params::Post
   before_action :set_post, only: %i[show edit update destroy]
 
   # GET /posts
@@ -58,10 +59,5 @@ class Admin::PostsController < Admin::BaseController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
-  def post_params
-    params.require(:post).permit(:markdown, :html, :template, :slug, :og_image_url, :image_url, :description, :title, :author_id, :page_id, :published_at, :summary)
   end
 end
