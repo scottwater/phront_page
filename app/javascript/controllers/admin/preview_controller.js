@@ -5,37 +5,21 @@ export default class extends Controller {
     url: String,
     formId: String
   }
-  static targets = ["button", "preview", "spinner"]
+  static targets = ["preview", "spinner"]
 
   connect() {
-    document.addEventListener("turbo:load", () => this.initializeDrawer())
-    this.initializeDrawer()
+    this.bindedOnDrawerShown = this.onDrawerShown.bind(this)
+    document.addEventListener('drawer:shown', this.bindedOnDrawerShown)
   }
 
-  initializeDrawer() {
-    if (!this.element) return
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'aria-hidden') {
-          this.onDrawerInitialized(this.element)
-          observer.disconnect()
-        }
-      })
-    })
-
-    observer.observe(this.element, { attributes: true })
+  disconnect() {
+    document.removeEventListener('drawer:shown', this.bindedOnDrawerShown)
   }
 
-  onDrawerInitialized(drawerElement) {
-    console.log("Drawer initialized")
-    this.drawer = FlowbiteInstances.getInstance('Drawer', drawerElement.id)
-    if (this.drawer) {
-      this.drawer.updateOnShow(() => {
-        this.spinnerTarget.classList.remove("hidden")
-        console.log("Showing drawer")
-        this.preview()
-      })
-    }
+  // Flowbite's drawers support only a single callback. This controller now depends on an event drawer:shown
+  // that is triggered by the drawer controller.
+  onDrawerShown() {
+    this.preview()
   }
 
   async preview() {

@@ -1,4 +1,4 @@
-<%= c 'admin/form/drawer' , id: drawer_id, text: "Preview" , data: {controller: "admin--preview", "admin--preview-form-id-value": form_id, "admin--preview-url-value": previews_path} do %>
+<%= c 'admin/form/drawer' , id: drawer_id, text: "Preview" , controllers: "admin--preview", data: {"admin--preview-form-id-value": form_id, "admin--preview-url-value": previews_path} do %>
   <div data-admin--preview-target="spinner" class="hidden">
     <%= c 'admin/spinner' %>
   </div>

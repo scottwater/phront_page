@@ -4,10 +4,16 @@ class Admin::Form::Drawer::Component < Admin::AdminViewComponent
   option :id
   option :text, optional: true
   option :position, default: proc { :right }
+  option :controllers, default: proc { [] }
+
   def style
     horizontal = %i[left right].include?(position)
     vertical = %i[top bottom].include?(position)
     super(position:, horizontal:, vertical:)
+  end
+
+  def controller_string_list
+    ([controllers].flatten << stimulus_controller).uniq.join(" ")
   end
   # TODO - There is an issue with Bottom position. It will render the drawer open by default
   # TailwindCSS is not picking up classes when they are on the same line in this file
