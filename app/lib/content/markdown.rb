@@ -4,7 +4,7 @@ module Content::Markdown
   extend self
 
   def to_html(markdown,
-    options: {extension: {footnotes: true, description_lists: true, multiline_block_quotes: true}},
+    options: {extension: {footnotes: true, description_lists: true, multiline_block_quotes: true}, render: {unsafe: true}},
     plugins: {syntax_highlighter: {theme: "base16-ocean.dark"}})
     Commonmarker.to_html(markdown, options:, plugins:)
   end
