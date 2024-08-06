@@ -11,6 +11,11 @@ module Content::Markdown
 
   def remove(markdown)
     markdown.dup.tap do |md|
+      # Remove HTML tags but keep their content
+      md.gsub!(/<[^>]*>(.*?)<\/[^>]*>/, '\1')
+      # Remove self-closing tags and tags without content
+      md.gsub!(/<[^>]*\/>|<[^>]*>/, "")
+
       # Remove links but keep the link text
       md.gsub!(/\[([^\]]+)\]\([^\)]+\)/, '\1')
 
