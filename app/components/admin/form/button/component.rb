@@ -10,9 +10,9 @@ class Admin::Form::Button::Component < Admin::AdminViewComponent
     if button_type == "narrow"
       tag.button(type: type, class: "text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800", **attributes.except(:class, :type)) { content }
     elsif button_type == "wide"
-      tag.button(type: type, class: "inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800", **attributes.except(:class, :type)) { content }
+      tag.button(type: type, class: "inline-flex items-center md:px-5 px-4 md:py-2.5 py-2 mt-4 sm:mt-6 md:text-sm text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800", **attributes.except(:class, :type)) { content }
     elsif button_type == "secondary"
-      tag.button(type: type, class: "inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-slate-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-slate-800", **attributes.except(:class, :type)) { content }
+      tag.button(type: type, class: "inline-flex items-center md:px-5 px-4 md:py-2.5 py-2 mt-4 sm:mt-6 md:text-sm text-xs font-medium text-center text-white bg-slate-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-slate-800", **attributes.except(:class, :type)) { content }
 
     end
   end

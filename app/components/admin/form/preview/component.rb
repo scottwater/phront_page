@@ -3,4 +3,5 @@
 class Admin::Form::Preview::Component < Admin::AdminViewComponent
   option :form_id
   option :drawer_id
+  option :klasses, optional: true
 end

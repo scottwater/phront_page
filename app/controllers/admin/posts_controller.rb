@@ -3,6 +3,7 @@
 class Admin::PostsController < Admin::BaseController
   include Admin::Params::Post
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_form_type, only: %i[new create edit update]
 
   # GET /posts
   def index
@@ -17,7 +18,9 @@ class Admin::PostsController < Admin::BaseController
   # GET /posts/new
   def new
     @post = Post.new
+    @post.markdown = generate_default_post_markdown if @form_type == "popup"
     @post.published_at = Time.current
+    render layout: (@form_type == "popup") ? "blank" : "admin"
   end
 
   # GET /posts/1/edit
@@ -30,9 +33,14 @@ class Admin::PostsController < Admin::BaseController
     @post.author = Current.author
 
     if @post.save
-      redirect_to posts_path, notice: "Post was successfully created."
+      if @form_type == "popup"
+        flash.now.notice = "Post was successfully created."
+        render :create_success, layout: "blank", status: :created
+      else
+        redirect_to posts_path, notice: "Post was successfully created."
+      end
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity, layout: (@form_type == "popup") ? "blank" : "admin"
     end
   end
 
@@ -56,8 +64,26 @@ class Admin::PostsController < Admin::BaseController
 
   private
 
+  def generate_default_post_markdown
+    title, url, body = params[:title], params[:url], params[:body]
+    content = []
+    if title.present? && url.present?
+      content << "[#{title}](#{url})"
+    end
+
+    if body.present?
+      content << "> #{body}"
+    end
+
+    content.any? ? content.join("\n\n") : nil
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_form_type
+    @form_type = params[:form_type]
   end
 end

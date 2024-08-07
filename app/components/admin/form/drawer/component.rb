@@ -5,11 +5,19 @@ class Admin::Form::Drawer::Component < Admin::AdminViewComponent
   option :text, optional: true
   option :position, default: proc { :right }
   option :controllers, default: proc { [] }
+  option :klasses, optional: true
 
   def style
     horizontal = %i[left right].include?(position)
     vertical = %i[top bottom].include?(position)
-    super(position:, horizontal:, vertical:)
+    core_drawer_klass_list = super(position:, horizontal:, vertical:)
+    if klasses
+      klass_array = core_drawer_klass_list.split(" ")
+      klass_array << klasses.split(" ")
+      TailwindMerge::Merger.new.merge(klass_array.flatten)
+    else
+      core_drawer_klass_list
+    end
   end
 
   def controller_string_list
@@ -32,7 +40,6 @@ class Admin::Form::Drawer::Component < Admin::AdminViewComponent
       position {
         left {
           %w[
-            top-16
             left-0
             border-r
             -translate-x-full
@@ -40,7 +47,6 @@ class Admin::Form::Drawer::Component < Admin::AdminViewComponent
         }
         right {
           %w[
-            top-16
             right-0
             translate-x-full
             border-l
@@ -67,6 +73,7 @@ class Admin::Form::Drawer::Component < Admin::AdminViewComponent
       horizontal {
         yes {
           %w[
+            top-16
             h-screen
             overflow-y-auto
             w-full

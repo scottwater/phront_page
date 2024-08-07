@@ -3,7 +3,7 @@
     <div class="grid gap-4 sm:gap-6 mt-2">
       <%= form.tf :title, label: false, placeholder: "Post Title (optional)" %>
       <%= form.mda :markdown, label: false, rows: 16, placeholder: "Your overly witty post content (written in markdown)", required: true %>
-      <%= c 'admin/form/drawer', id: "post-form-drawer", text: "Post Options" do %>
+      <%= c 'admin/form/drawer', id: "post-form-drawer", text: "Post Options", klasses: "#{form_type == "popup" ? "top-0" : ""}" do %>
         <%= form.sf :page_id, Pages.select_list_for_posts_with_no_page, selected: post.page_id %>
         <%= form.tf :slug %>
         <%= form.tf :published_at, hint: "If empty, the post is not published. If a date is present, the post is not visible until after the date" %>
@@ -12,11 +12,12 @@
         <%= form.ta :description, rows: 4 %>
         <%= form.ta :summary, rows: 4 %>
       <% end %>
-      <%= c 'admin/form/preview', form_id: "post-form", drawer_id: "post-preview-drawer" %>
+      <input type="hidden" name="form_type" value="<%= form_type %>">
+      <%= c 'admin/form/preview', form_id: "post-form", drawer_id: "post-preview-drawer", klasses: "#{form_type == "popup" ? "top-0" : ""}" %>
     </div>
     <div class="w-full flex justify-between items-center px-4">
       <%= form.sb button_type: "wide" %>
-      <div class="flex space-x-4">
+      <div class="flex md:space-x-4 space-x-1">
         <%= c 'admin/form/drawer_button', text: "Options", drawer_id: "post-form-drawer", modifier_key: "ctrlKey", key: "o" %>
         <%= c 'admin/form/drawer_button', text: "Preview", drawer_id: "post-preview-drawer", modifier_key: "ctrlKey", key: "p" %>
       </div>

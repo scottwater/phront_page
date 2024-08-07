@@ -11,12 +11,13 @@ Rails.application.routes.draw do
     resources :posts, except: [:show]
     resources :redirects, except: [:show]
     resources :configurations
+    get "/posts/close_popup", to: "posts#close_popup", as: "close_popup"
     match "/previews", to: "previews#show", via: [:patch, :post]
     get "/profile" => "profile#edit", :as => "edit_profile"
     patch "/profile" => "profile#update", :as => "update_profile"
     get "/account" => "account#edit", :as => "edit_account"
     patch "/account" => "account#update", :as => "update_account"
-
+    get "/tools" => "tools#index", :as => "tools"
     get "/" => "admin#index", :as => :admin_root
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
