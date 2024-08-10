@@ -9,7 +9,7 @@ export default class extends Controller {
 
   connect() {
     this.bindedOnDrawerShown = this.onDrawerShown.bind(this)
-    document.addEventListener('drawer:shown', this.bindedOnDrawerShown)
+    document.addEventListener('drawer:shown', this.bindedOnDrawerShown, {capture: true})
   }
 
   disconnect() {
@@ -18,8 +18,13 @@ export default class extends Controller {
 
   // Flowbite's drawers support only a single callback. This controller now depends on an event drawer:shown
   // that is triggered by the drawer controller.
-  onDrawerShown() {
+  onDrawerShown(event) {
+    if (event.detail.drawerId === this.element.id) {
+    console.log("Preview Controller Connected")
     this.preview()
+    } else {
+      console.log("Not the drawer we are looking for says Preview")
+    }
   }
 
   async preview() {

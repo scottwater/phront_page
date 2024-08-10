@@ -1,5 +1,5 @@
 <% content_for :title, "Pages" %>
-
+<%= c 'admin/revision_orphans', orphans: Revision.orphaned_pages, record_type: "Page" %>
 <%= c 'admin/model_list', button_text: "Add New Page", button_url: new_page_path do |list| %>
     <% list.with_header { "Name"} %>
     <% list.with_header { "Slug"} %>

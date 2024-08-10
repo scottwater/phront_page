@@ -1,8 +1,8 @@
 <%= c 'admin/form/wrapper', model: post do %>
-  <%= form_with(model: post, class: "contents", html: {"data-controller": "admin--unsaved-changes", id: "post-form"}) do |form| %>
+  <%= form_with(model: post, class: "contents", html: {"data-controller": "admin--unsaved-changes admin--revision", "data-admin--revision-target": "form", "data-admin--revision-url-value": revisions_path, id: "post-form"}) do |form| %>
     <div class="grid gap-4 sm:gap-6 mt-2">
       <%= form.tf :title, label: false, placeholder: "Post Title (optional)" %>
-      <%= form.mda :markdown, label: false, rows: 16, placeholder: "Your overly witty post content (written in markdown)", required: true %>
+      <%= form.mda :markdown, label: false, rows: 16, placeholder: "Your overly witty post content (written in markdown)", required: true, "data-admin--revision-target": "minimalLegthField" %>
       <%= c 'admin/form/drawer', id: "post-form-drawer", text: "Post Options", klasses: "#{form_type == "popup" ? "top-0" : ""}" do %>
         <%= form.sf :page_id, Pages.select_list_for_posts_with_no_page, selected: post.page_id %>
         <%= form.tf :slug %>
@@ -13,14 +13,19 @@
         <%= form.ta :summary, rows: 4 %>
       <% end %>
       <input type="hidden" name="form_type" value="<%= form_type %>">
+      <input type="hidden" name="revision_model_id" value="<%= revision_model_id %>">
       <%= c 'admin/form/preview', form_id: "post-form", drawer_id: "post-preview-drawer", klasses: "#{form_type == "popup" ? "top-0" : ""}" %>
+      <%= c 'admin/form/revisions', drawer_id: "post-revisions-drawer", revision_model_id: revision_model_id, revisions_model_type: "post", klasses: "#{form_type == "popup" ? "top-0" : ""}" %>
     </div>
     <div class="w-full flex justify-between items-center px-4">
       <%= form.sb button_type: "wide" %>
       <div class="flex md:space-x-4 space-x-1">
         <%= c 'admin/form/drawer_button', text: "Options", drawer_id: "post-form-drawer", modifier_key: "ctrlKey", key: "o" %>
         <%= c 'admin/form/drawer_button', text: "Preview", drawer_id: "post-preview-drawer", modifier_key: "ctrlKey", key: "p" %>
+        <%= c 'admin/form/drawer_button', text: "Revisions", drawer_id: "post-revisions-drawer", modifier_key: "ctrlKey", key: "r" %>
       </div>
     </div>
   <% end %>
 <% end %>
+
+<div id="toast"></div>

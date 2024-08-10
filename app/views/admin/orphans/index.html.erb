@@ -1,0 +1,13 @@
+<h1 class="font-bold text-4xl">Orphaned <%= params[:type].titleize %></h1>
+<%= c 'admin/model_list', button_text: false, button_url: false do |component| %>
+    <% component.with_header { "Title"} %>
+    <% component.with_header { "Saved At"} %>
+    <% @orphans.map {|orphan| k("admin/orphan", orphan)}.each do |orphan| %>
+      <% component.with_row do |row| %>
+        <%= row.with_cell { link_to orphan.title, orphan.edit_path, class: "hover:underline" } %>
+        <%= row.with_cell { orphan.saved_at } %>
+        <%= row.with_action(text: "Edit", url: orphan.edit_path) %>
+        <%= row.with_action(text: "Delete", url: delete_orphaned_items_path(orphan.record_type.downcase, orphan.uid), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this content? - #{orphan.title}" }) %>
+      <% end %>
+    <% end %>
+<% end %>

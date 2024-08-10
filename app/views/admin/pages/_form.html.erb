@@ -1,5 +1,5 @@
 <%= c 'admin/form/wrapper', model: page do %>
-  <%= form_with(model: page, class: "contents", html: {"data-controller": "admin--unsaved-changes", id: "page-form"}) do |form| %>
+  <%= form_with(model: page, class: "contents", html: {"data-controller": "admin--unsaved-changes admin--revision", "data-admin--revision-target": "form", "data-admin--revision-url-value": revisions_path, id: "page-form"}) do |form| %>
     <div class="grid gap-4 grid-cols-1 sm:gap-6">
       <%= form.tf :name, label: false, placeholder: "Page Name (required)", required: true %>
       <%= form.mda :markdown, label: false, placeholder: "Page Content (markdown...optional)", rows: 16, wrapped_class: "sm:col-span-2"%>
@@ -16,12 +16,15 @@
         <%= form.tf :title, help: "This sets the Title elemement in the head of your page" %>
       <% end %>
       <%= c 'admin/form/preview', form_id: "page-form", drawer_id: "page-preview-drawer" %>
+      <%= c 'admin/form/revisions', drawer_id: "page-revisions-drawer", revision_model_id: revision_model_id, revisions_model_type: "page" %>
+      <input type="hidden" name="revision_model_id" value="<%= revision_model_id %>">
     </div>
     <div class="w-full flex justify-between items-center px-4">
       <%= form.sb button_type: "wide" %>
       <div class="flex space-x-4">
         <%= c 'admin/form/drawer_button', text: "Options", drawer_id: "page-form-drawer",  modifier_key: "ctrlKey", key: "o" %>
         <%= c 'admin/form/drawer_button', text: "Preview", drawer_id: "page-preview-drawer", modifier_key: "ctrlKey", key: "p" %>
+        <%= c 'admin/form/drawer_button', text: "Revisions", drawer_id: "page-revisions-drawer", modifier_key: "ctrlKey", key: "r" %>
       </div>
     </div>
   <% end %>

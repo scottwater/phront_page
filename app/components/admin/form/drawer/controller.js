@@ -25,7 +25,7 @@ export default class extends Controller {
     this.drawer = FlowbiteInstances.getInstance('Drawer', drawerElement.id)
     if (this.drawer) {
       this.drawer.updateOnShow(() => {
-        const event = new CustomEvent('drawer:shown', { detail: { drawerId: drawerElement.id } })
+        const event = new CustomEvent('drawer:shown', { detail: { drawerId: drawerElement.id }})
         document.dispatchEvent(event)
 
         const drawers = FlowbiteInstances.getInstances("Drawer")

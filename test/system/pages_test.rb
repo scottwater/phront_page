@@ -28,6 +28,7 @@ class PagesTest < ApplicationSystemTestCase
       click_on "Options"
       fill_in "Description", with: "This is a description."
       fill_in "Title", with: "This is a title"
+      send_keys(:escape) # Need to use escape to close the drawer
       click_on "Create Page"
     end
     assert_equal "Mo Details, Mo Problems!", last_page.name
@@ -53,6 +54,7 @@ class PagesTest < ApplicationSystemTestCase
       fill_in "page_markdown", with: "This is markdown for the test page."
       click_on "Options"
       drop_file("photo.jpg", "label[for=image-drop-image_url]")
+      send_keys(:escape) # Need to use escape to close the drawer
       click_on "Create Page"
     end
     assert_match(/photo.jpg/, last_page.image_url)

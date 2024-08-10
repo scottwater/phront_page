@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Admin::PostsController < Admin::BaseController
+  include Admin::Revisions::Finder
   include Admin::Params::Post
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post, only: %i[show destroy]
   before_action :set_form_type, only: %i[new create edit update]
 
   # GET /posts
@@ -17,22 +18,30 @@ class Admin::PostsController < Admin::BaseController
 
   # GET /posts/new
   def new
-    @post = Post.new
-    @post.markdown = generate_default_post_markdown if @form_type == "popup"
-    @post.published_at = Time.current
-    render layout: (@form_type == "popup") ? "blank" : "admin"
+    if params[:revision]
+      new_instance_with_revision(Post)
+    else
+      @post = Post.new
+      @post.markdown = generate_default_post_markdown
+      @post.published_at = Time.current
+      @revision_model_id = SecureRandom.uuid
+    end
+    render layout: layout_name
   end
 
   # GET /posts/1/edit
   def edit
+    if params[:revision]
+      exsting_instance_with_revision(Post)
+    else
+      @post = Post.find(params[:id])
+    end
   end
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
-    @post.author = Current.author
-
-    if @post.save
+    form = CreatePostForm.new(params: post_params, author: Current.author, revision_model_id: params[:revision_model_id])
+    if form.save
       if @form_type == "popup"
         flash.now.notice = "Post was successfully created."
         render :create_success, layout: "blank", status: :created
@@ -40,15 +49,18 @@ class Admin::PostsController < Admin::BaseController
         redirect_to posts_path, notice: "Post was successfully created."
       end
     else
-      render :new, status: :unprocessable_entity, layout: (@form_type == "popup") ? "blank" : "admin"
+      @post = form.post
+      render :new, status: :unprocessable_entity, layout: layout_name
     end
   end
 
   # PATCH/PUT /posts/1
   def update
-    if @post.update(post_params)
+    form = UpdatePostForm.new(params: post_params, post: Post.find(params[:id]))
+    if form.update
       redirect_to posts_path, notice: "Post was successfully updated.", status: :see_other
     else
+      @post = form.post
       if @post.valid?
         flash.now[:alert] = "There was an error updating your post"
       end
@@ -63,6 +75,10 @@ class Admin::PostsController < Admin::BaseController
   end
 
   private
+
+  def layout_name
+    (@form_type == "popup") ? "blank" : "admin"
+  end
 
   def generate_default_post_markdown
     title, url, body = params[:title], params[:url], params[:body]

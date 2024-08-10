@@ -1,5 +1,5 @@
 <% content_for :title, "Posts" %>
-
+<%= c 'admin/revision_orphans', orphans: Revision.orphaned_posts, record_type: "Post" %>
 <%= c 'admin/model_list', button_text: "Add New Post", button_url: new_post_path do |component| %>
     <% component.with_header { "Title"} %>
     <% component.with_header { "Published At"} %>

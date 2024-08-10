@@ -1,0 +1,6 @@
+<%= c 'admin/form/drawer', controllers: "admin--revisions", data: {"admin--revisions-model-type-value": revisions_model_type, "admin--revisions-model-id-value": revision_model_id},  id: drawer_id, text: "Revisions", klasses:  do %>
+  <div data-admin--revisions-target="spinner" class="hidden">
+    <%= c 'admin/spinner' %>
+  </div>
+  <div id="revisions" data-admin--revisions-target="revisions" class="p-4"></div>
+<% end %>

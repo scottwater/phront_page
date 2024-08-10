@@ -33,6 +33,7 @@ class PostsTest < ApplicationSystemTestCase
       select Pages.select_list_for_posts.first[0], from: "Page"
       fill_in "Description", with: "This is a description."
       fill_in "Published at", with: "2021-01-01 12:00:00"
+      send_keys(:escape) # Need to use escape to close the drawer
       click_on "Create Post"
       assert_current_path posts_url
     end
@@ -59,6 +60,7 @@ class PostsTest < ApplicationSystemTestCase
       fill_in "post_markdown", with: "This is a test post."
       click_on "Options"
       drop_file("photo.jpg", "label[for=image-drop-og_image_url]")
+      send_keys(:escape) # Need to use escape to close the drawer
       click_on "Create Post"
     end
     assert_match(/photo.jpg/, last_post.og_image_url)
@@ -81,6 +83,7 @@ class PostsTest < ApplicationSystemTestCase
       select newly_selected_page[0], from: "Page"
       find("div[data-admin--form--image-drop--component-target='previewZone'] a").click
       drop_file("photo.jpg", "label[for=image-drop-og_image_url]")
+      send_keys(:escape) # Need to use escape to close the drawer
       click_button "Update Post"
     end
 

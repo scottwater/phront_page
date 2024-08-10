@@ -7,6 +7,7 @@ export default class extends Controller {
     this.setChanges = this.setChanges.bind(this)
     this.promptUser = this.promptUser.bind(this)
     this.handleAnchorClick = this.handleAnchorClick.bind(this)
+    this.handleRevisionSaved = this.handleRevisionSaved.bind(this)
   }
 
   connect() {
@@ -14,16 +15,22 @@ export default class extends Controller {
     this.element.addEventListener("input", this.setChanges)
     window.addEventListener("beforeunload", this.promptUser)
     document.addEventListener("click", this.handleAnchorClick)
+    document.addEventListener("revision:saved", this.handleRevisionSaved)
   }
 
   disconnect() {
     this.element.removeEventListener("input", this.setChanges)
     window.removeEventListener("beforeunload", this.promptUser)
     document.removeEventListener("click", this.handleAnchorClick)
+    document.removeEventListener("revision:saved", this.handleRevisionSaved)
   }
 
   setChanges() {
     this.hasChanges = true
+  }
+
+  handleRevisionSaved() {
+    this.hasChanges = false
   }
 
   promptUser(event) {

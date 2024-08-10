@@ -1,1 +1,3 @@
-<%= render "form", post: @post, form_type: @form_type %>
+<%= c 'admin/revision_warning', revision: @revision %>
+
+<%= render "form", post: @post, form_type: @form_type, revision_model_id: @post.id %>

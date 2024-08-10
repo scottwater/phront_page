@@ -11,8 +11,15 @@ Rails.application.routes.draw do
     resources :posts, except: [:show]
     resources :redirects, except: [:show]
     resources :configurations
+    get "/orphans/:type", to: "orphans#index", as: "orphaned_items",
+      constraints: {type: /(posts|pages)/}
+    delete "/orphans/:type/:uid", to: "orphans#delete", as: "delete_orphaned_items",
+      constraints: {type: /(post|page)/}
     get "/posts/close_popup", to: "posts#close_popup", as: "close_popup"
     match "/previews", to: "previews#show", via: [:patch, :post]
+    get "/revisions/(:revision_type)/(:revision_model_id)", to: "revisions#show"
+    post "/revisions", to: "revisions#create_for_new"
+    patch "/revisions", to: "revisions#create_for_existing"
     get "/profile" => "profile#edit", :as => "edit_profile"
     patch "/profile" => "profile#update", :as => "update_profile"
     get "/account" => "account#edit", :as => "edit_account"
