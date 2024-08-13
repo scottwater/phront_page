@@ -20,7 +20,7 @@ gem "litestack", "0.4.4"
 gem "lograge"
 gem "puma", ">= 5.0"
 gem "requestjs-rails" # import maps should be loaded before this
-gem "rails", github: "rails/rails", branch: "7-2-stable"
+gem "rails", "7.2.0"
 gem "slowpoke"
 gem "sqlite3", ">= 1.4"
 gem "stimulus-rails"
