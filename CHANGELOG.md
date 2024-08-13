@@ -18,3 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Post and Page Previews
 - Update keyboard shortcut for options to control-o
+
+## [0.0.0.3] - 2024-08-013
+
+- Revisions for Posts and Pages
+- Move to offical Rails 7.2.0 release
