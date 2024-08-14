@@ -16,25 +16,34 @@ module Content::Markdown
       # Remove self-closing tags and tags without content
       md.gsub!(/<[^>]*\/>|<[^>]*>/, "")
 
+      # Remove footnotes definitions (including multi-line)
+      md.gsub!(/^\[\^[^\]]+\]:.*?(?:\n(?=\S).*?)*$/m, "")
+
+      # Remove footnote references
+      md.gsub!(/\[\^[^\]]+\]/, "")
+
+      # Remove link references (including multi-line)
+      md.gsub!(/^\[[^\]]+\]:.*?(?:\n(?=\S).*?)*$/m, "")
+
       # Remove links but keep the link text
       md.gsub!(/\[([^\]]+)\]\([^\)]+\)/, '\1')
+
+      # Remove reference-style links but keep the link text
+      md.gsub!(/\[([^\]]+)\]\[[^\]]+\]/, '\1')
 
       # Remove images
       md.gsub!(/!\[[^\]]*\]\([^\)]+\)/, "")
 
       # Remove code blocks (indented, fenced with three backticks, and optionally fenced with three backticks and the language name)
-      md.gsub!(/(^|\n)```.*?\n.*?\n```(\n|$)/m, "")
-      md.gsub!(/(^|\n)    .+(\n|$)/, "")
+      md.gsub!(/(^|\n)```.*?\n.*?\n```(\n|$)/m, "\n\n")
+      md.gsub!(/(^|\n)    .+(\n|$)/, "\n\n")
 
       # Remove blockquotes
-      md.gsub!(/(^|\n)> .+(\n|$)/, "")
+      md.gsub!(/(^|\n)> .+(\n|$)/, "\n")
 
       # Remove ordered and unordered lists
-      md.gsub!(/(^|\n)\s*[-+*]\s+.+(\n|$)/, "")
-      md.gsub!(/(^|\n)\s*\d+\.\s+.+(\n|$)/, "")
-
-      # Remove markdown footnotes
-      md.gsub!(/(^|\n)\[\^[^\]]+\]: .+(\n|$)/, "")
+      md.gsub!(/(^|\n)\s*[-+*]\s+.+(\n|$)/, "\n")
+      md.gsub!(/(^|\n)\s*\d+\.\s+.+(\n|$)/, "\n")
 
       # Remove other markdown syntax but keep the content
       md.gsub!(/(\*\*|__)(.*?)\1/, '\2')  # Bold
@@ -50,8 +59,11 @@ module Content::Markdown
       # Remove image metadata
       md.gsub!(/^!.+$/, "")
 
-      # normalize newlines
-      md.gsub!(/\n{2,}/, "\n\n")
+      # normalize newlines (preserve paragraph breaks)
+      md.gsub!(/\n{3,}/, "\n\n")
+
+      # Remove any trailing whitespace
+      md.strip!
     end
   end
 end
