@@ -5,9 +5,10 @@ class Admin::RevisionPresenter < Keynote::Presenter
   def title
     revision.attributes_with_changes&.dig("name", 1).presence ||
       revision.attributes_with_changes&.dig("title", 1).presence ||
-      revision.data["title"].presence ||
-      revision.data["name"].presence ||
-      revision.data["summary"]&.truncate(50)
+      revision.data&.dig("title").presence ||
+      revision.data&.dig("name").presence ||
+      revision.data&.dig("summary")&.truncate(50) ||
+      "No title/name"
   end
 
   def svg_icon_name

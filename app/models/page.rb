@@ -11,6 +11,7 @@ class Page < ApplicationRecord
   validates :page_type, presence: true
   validates :page_type, uniqueness: true, if: -> { home_page? || search_page? }
   normalizes :og_image_url, :image_url, :description, :title, :template, with: ->(value) { value.blank? ? nil : value }
+  normalizes :markdown, :description, with: ->(value) { value&.gsub("\r\n", "\n") }
   has_many :posts
   has_many :revisions, as: :record, dependent: :destroy
   # overrides default ordering in ApplicationRecord

@@ -17,9 +17,9 @@ class Admin::RevisionsController < Admin::BaseController
 
   def create_for_new
     if params[:post]
-      create_new_revision(Post, post_params)
+      CreateAutoRevisionForNewContentForm.new(params: post_params, model_type: Post, revision_model_id:).save!
     elsif params[:page]
-      create_new_revision(Page, page_params)
+      CreateAutoRevisionForNewContentForm.new(params: page_params, model_type: Page, revision_model_id:).save!
     else
       raise "Invalid model type"
     end
@@ -29,9 +29,16 @@ class Admin::RevisionsController < Admin::BaseController
 
   def create_for_existing
     if params[:post]
-      create_existing_revision(Post, post_params)
+      CreateAutoRevisionForExistingContentForm.new(
+        # Author is not set on form. Ensure it does not affect the revision
+        params: post_params.merge(author_id: Current.author.id),
+        model: Post.find(revision_model_id)
+      ).save!
     elsif params[:page]
-      create_existing_revision(Page, page_params)
+      CreateAutoRevisionForExistingContentForm.new(
+        params: page_params,
+        model: Page.find(revision_model_id)
+      ).save!
     else
       raise "Invalid model type"
     end
@@ -48,37 +55,7 @@ class Admin::RevisionsController < Admin::BaseController
     @revision_model_id = params[:revision_model_id]
   end
 
-  def update_existing_model(model, update_params)
-    update_params.each do |key, value|
-      model.send(:"#{key}=", value)
-    end
-  end
-
-  def create_new_revision(model_type, model_params)
-    create_revision(model_type.new(model_params), @revision_model_id)
-  end
-
-  def create_existing_revision(model_type, model_params)
-    model_instance = model_type.find(@revision_model_id).tap do |model|
-      model_params.each do |key, value|
-        model.send(:"#{key}=", value)
-      end
-    end
-    create_revision(model_instance, nil)
-  end
-
-  def create_revision(model, uid)
-    if model.respond_to?(:author=)
-      model.author = Current.author
-    end
-    model.valid?
-    if model.new_record?
-      # For revisions on new records, we do not want the model to be persisted
-      # directly in the database. Calling create! with record: model and the relationship
-      # defined on the model will cause the record to be persisted.
-      Revision.create!(record_type: model.class.name, revision_type: :auto, data: model.attributes, attributes_with_changes: model.changes, uid:)
-    else
-      Revision.create!(record: model, revision_type: :auto, data: model.attributes, attributes_with_changes: model.changes, uid:)
-    end
+  def revision_model_id
+    params[:revision_model_id]
   end
 end
