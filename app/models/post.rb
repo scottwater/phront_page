@@ -20,6 +20,6 @@ class Post < ApplicationRecord
                     }
   scope :root_feed, ->(limit = 20) { home_page.ordered.limit(limit) }
   normalizes :page_id, with: ->(page_id) { (page_id.to_i <= 0) ? nil : page_id }
-  normalizes :og_image_url, :image_url, :description, :title, :summary, with: ->(value) { value.blank? ? nil : value }
+  normalizes :slug, :og_image_url, :image_url, :description, :title, :summary, with: ->(value) { value.blank? ? nil : value }
   normalizes :markdown, :summary, :description, with: ->(value) { value&.gsub("\r\n", "\n") }
 end
