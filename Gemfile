@@ -8,6 +8,7 @@ gem "aws-sdk-s3", "~> 1.156", require: false
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
 gem "commonmarker"
+gem "diffy"
 gem "dry-initializer", "~> 3.1"
 gem "honeybadger", "~> 5.15"
 gem "importmap-rails"

@@ -138,6 +138,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     devpack (0.4.2)
+    diffy (3.4.2)
     drb (2.2.1)
     dry-initializer (3.1.1)
     erb_lint (0.6.0)
@@ -437,6 +438,7 @@ DEPENDENCIES
   commonmarker
   debug
   devpack
+  diffy
   dry-initializer (~> 3.1)
   erb_lint
   faker

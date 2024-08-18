@@ -23,6 +23,14 @@ class Admin::RevisionPresenter < Keynote::Presenter
     "#{revision.auto_revision? ? "Saved at" : "Published at"} #{saved_at}"
   end
 
+  def changes
+    revision.attributes_with_changes.reject { |key, value| key.in?(["html", "id", "created_at", "updated_at"]) }
+  end
+
+  def changes?
+    changes.any?
+  end
+
   def edit_path
     case [revision.record, revision.record_type]
     in [Post => post, "Post"]

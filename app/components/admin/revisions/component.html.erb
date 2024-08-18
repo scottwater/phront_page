@@ -8,7 +8,14 @@
         </span>
         <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white"><%= revision.title %><span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">Latest</span></h3>
         <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"><%= revision.saved_at_description %></time>
-        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400"><%= revision.change_list %></p>
+        <% if revision.changes? %>
+          <% revision.changes.each do |key, changes| %>
+            <div class="my-4">
+              <p class="mb-4 text-base font-semibold text-gray-500 dark:text-gray-400 underline"><%= key.titleize %> Changes:</p>
+              <%= Diffy::Diff.new(changes[0], changes[1], context: 3).to_s(:html_simple).html_safe %>
+          </div>
+          <% end %>
+        <% end %>
         <p><%= link_to "Edit this Revision", revision.edit_path, class: "inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline" %></p>
     </li>
   <% end %>
