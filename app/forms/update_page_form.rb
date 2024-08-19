@@ -15,7 +15,7 @@ class UpdatePageForm < ApplicationForm
   private
 
   def create_revision
-    @revision = Revision.create!(record: page, revision_type: :published, data: page.attributes, attributes_with_changes: page.changes)
+    @revision = Revision.create!(record: page, revision_type: :published, data: page.attributes, attributes_with_changes: page.saved_changes)
   end
 
   def remove_orphaned_auto_revisions
