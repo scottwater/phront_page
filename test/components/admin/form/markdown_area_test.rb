@@ -7,7 +7,6 @@ class Admin::Form::MarkdownArea::ComponentTest < ViewComponent::TestCase
     component = build_component(name: "markdown_area")
 
     content = render_inline(component)
-    # debugger
     assert_selector "div textarea"
     assert content.css("div textarea[data-controller]").attr("data-controller").value.include?("form--markdown-area--component")
   end
