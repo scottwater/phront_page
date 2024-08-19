@@ -1,0 +1,5 @@
+<div class="my-4">
+  <p class="mb-4 text-base font-semibold text-gray-500 dark:text-gray-400 underline"><%= attribute.titleize %> Changes:</p>
+  <%= Diffy::Diff.new(old_value, new_value, context: , include_plus_and_minus_in_html: true).to_s(:html_simple).html_safe %>
+</div>
+
