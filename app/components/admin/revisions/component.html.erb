@@ -6,7 +6,7 @@
         <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:primary-900">
             <%= svg(revision.svg_icon_name) %>
         </span>
-        <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white"><%= revision.title %><span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">Latest</span></h3>
+        <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white"><%= revision.title %></h3>
         <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"><%= revision.saved_at_description %></time>
           <% revision.changes.each do |key, changes| %>
             <%= c 'admin/diff', attribute: key, old_value: changes[0], new_value: changes[1], context: 3 %>
