@@ -44,7 +44,7 @@ class CreateAutoRevisionForExistingContentForm < ApplicationForm
   end
 
   def datetime_changes(previous_value, new_value)
-    [previous_value, new_value] if DateTime.parse(previous_value) != DateTime.parse(new_value)
+    [previous_value, new_value] if (previous_value.present? != new_value.present?) || DateTime.parse(previous_value) != DateTime.parse(new_value)
   end
 
   def boolean_changes(previous_value, new_value)
