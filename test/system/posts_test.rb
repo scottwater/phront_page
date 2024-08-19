@@ -56,7 +56,7 @@ class PostsTest < ApplicationSystemTestCase
 
   test "Drop a photo onto an image drop" do
     visit new_post_url
-    last_post = sign_in_execute_steps_and_return_post do |title|
+    last_post = sign_in_execute_steps_and_return_post do
       fill_in "post_markdown", with: "This is a test post."
       click_on "Options"
       drop_file("photo.jpg", "label[for=image-drop-og_image_url]")
