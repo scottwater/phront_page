@@ -26,6 +26,8 @@ class CreateAutoRevisionForExistingContentForm < ApplicationForm
           boolean_changes(previous_data[key], params[key])
         in :text
           text_changes(previous_data[key], params[key])
+        in :datetime
+          datetime_changes(previous_data[key], params[key])
         else
           changes_for_field(previous_data[key], params[key])
         end
@@ -39,6 +41,10 @@ class CreateAutoRevisionForExistingContentForm < ApplicationForm
       keys_with_data.merge(params_with_data, params_with_data)
       keys_with_data.delete_if { |key| %w[id html page_type author_id created_at updated_at].include?(key) }
     end
+  end
+
+  def datetime_changes(previous_value, new_value)
+    [previous_value, new_value] if DateTime.parse(previous_value) != DateTime.parse(new_value)
   end
 
   def boolean_changes(previous_value, new_value)
