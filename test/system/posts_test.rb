@@ -67,7 +67,13 @@ class PostsTest < ApplicationSystemTestCase
   end
 
   test "update a post" do
-    post = posts(:one)
+    post = Post.create!(
+      author: authors(:scott),
+      title: "Test Post",
+      markdown: "This is a test post.",
+      page: pages(:about),
+      image_url: "https://picsum.photos/id/237/600/800"
+    )
     # First page that is not the current page
     newly_selected_page = Pages.select_list_for_posts.find { |page| page[1] != post.page_id }
     assert_not_nil post.image_url
