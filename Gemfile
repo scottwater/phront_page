@@ -39,6 +39,7 @@ group :development, :test do
   gem "faker"
   gem "lookbook", require: false
   gem "standard"
+  gem "standard-rails"
 end
 
 group :development do
