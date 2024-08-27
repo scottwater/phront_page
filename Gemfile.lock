@@ -452,7 +452,7 @@ DEPENDENCIES
   minitest-reporters
   propshaft
   puma (>= 5.0)
-  rails (= 7.2.0)
+  rails (< 7.3)
   requestjs-rails
   slowpoke
   sqlite3 (>= 1.4)
