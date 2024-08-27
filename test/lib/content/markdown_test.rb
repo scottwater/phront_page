@@ -54,7 +54,7 @@ class Content::MarkdownTest < ActiveSupport::TestCase
   end
 
   test "remove method handles footnotes" do
-    markdown = <<~MARKDOWN.strip_heredoc
+    markdown = <<~MARKDOWN
       Here's a sentence with a footnote[^1].
 
       And another with a longer footnote[^bignote].
@@ -79,7 +79,7 @@ class Content::MarkdownTest < ActiveSupport::TestCase
   end
 
   test "remove method handles mixed markdown elements" do
-    markdown = <<~MARKDOWN.strip_heredoc
+    markdown = <<~MARKDOWN
       # My Document
 
       This paragraph has **bold**, *italic*, and `code` elements.
