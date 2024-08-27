@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_07_203021) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_27_150353) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -75,6 +75,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_07_203021) do
     t.datetime "updated_at", null: false
     t.boolean "exclude_posts_from_home_page", default: false
     t.string "page_type", default: "content", null: false
+    t.index ["name"], name: "index_pages_on_name", unique: true
     t.index ["slug"], name: "index_pages_on_slug", unique: true
   end
 
@@ -94,6 +95,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_07_203021) do
     t.text "summary"
     t.index ["author_id"], name: "index_posts_on_author_id"
     t.index ["page_id"], name: "index_posts_on_page_id"
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
   create_table "redirects", force: :cascade do |t|
