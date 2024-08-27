@@ -15,8 +15,8 @@ module PhrontPage
     config.autoload_paths << "#{root}/app/views"
     config.autoload_paths << "#{root}/app/views/layouts"
     config.autoload_paths << "#{root}/app/views/components"
-    config.view_component.preview_paths << "#{Rails.root.join("app/components")}"
-    config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.{rb,yml}")]
+    config.view_component.preview_paths << Rails.root.join("app/components").to_s
+    config.i18n.load_path += Rails.root.glob("config/locales/**/*.{rb,yml}")
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2

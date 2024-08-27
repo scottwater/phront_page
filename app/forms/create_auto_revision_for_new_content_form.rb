@@ -5,7 +5,7 @@ class CreateAutoRevisionForNewContentForm < ApplicationForm
 
   def save!
     changes = detect_changes
-    @revision = Revision.create!(record_type: model_type, revision_type: :auto, data: params.select { |key, value| value.present? }, attributes_with_changes: changes, uid: revision_model_id)
+    @revision = Revision.create!(record_type: model_type, revision_type: :auto, data: params.compact_blank, attributes_with_changes: changes, uid: revision_model_id)
   end
 
   private

@@ -24,18 +24,18 @@ class Admin::Revisions::Preview < ApplicationViewComponentPreview
   end
 
   def revisions_by_uid(uid)
-    return unless uid.present?
+    return if uid.blank?
     Revision.where(uid:).order(created_at: :desc).limit(10)
   end
 
   def post_revsion(post_id)
-    return nil unless post_id.present?
+    return nil if post_id.blank?
     post = Post.find(post_id)
     post.revisions.order(created_at: :desc).limit(10)
   end
 
   def page_revsion(page_id)
-    return nil unless page_id.present?
+    return nil if page_id.blank?
     page = Page.find(page_id)
     page.revisions.order(created_at: :desc).limit(10)
   end

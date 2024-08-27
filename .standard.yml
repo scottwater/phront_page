@@ -1,2 +1,10 @@
 plugins:
   - standard-rails
+
+ignore:
+  # Legacy migrations
+  - 'db/migrate/20108072**.rb'
+  - 'db/migrate/202407*.rb'
+  - 'db/migrate/202406*.rb'
+  - 'db/migrate/202405*.rb'
+  - 'db/migrate/202404*.rb'

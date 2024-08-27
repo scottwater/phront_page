@@ -8,7 +8,7 @@ class CreateAutoRevisionForExistingContentForm < ApplicationForm
       record_type: model.class,
       record_id: model.id,
       revision_type: :auto,
-      data: params.select { |key, value| value.present? },
+      data: params.compact_blank,
       attributes_with_changes: changes
     )
   end

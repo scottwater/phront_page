@@ -24,7 +24,7 @@ class Admin::RevisionPresenter < Keynote::Presenter
   end
 
   def changes
-    revision.attributes_with_changes.reject { |key, value| key.in?(["html", "id", "created_at", "updated_at"]) }
+    revision.attributes_with_changes.except("html", "id", "created_at", "updated_at")
   end
 
   def changes?

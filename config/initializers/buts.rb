@@ -7,6 +7,6 @@ module Kernel
   def buts(obj)
     black_background_white_text = "\e[30;47m"
     reset = "\e[0m"
-    puts "#{black_background_white_text}#{obj.pretty_inspect}#{reset}"
+    Rails.logger.debug { "#{black_background_white_text}#{obj.pretty_inspect}#{reset}" }
   end
 end

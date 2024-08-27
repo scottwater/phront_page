@@ -30,7 +30,7 @@ class FeedController < ApplicationController
           content_html: post.html,
           url: post.url,
           date_published: post.published_at
-        }.keep_if { |_, v| v.present? }
+        }.compact_blank!
       end
     }
   end

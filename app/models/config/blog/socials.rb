@@ -33,6 +33,6 @@ class Config::Blog::Socials < Config
   end
 
   def urls
-    data.select { |key, value| key.ends_with?("_url") }.values.reject(&:blank?)
+    data.select { |key, value| key.ends_with?("_url") }.values.compact_blank
   end
 end
