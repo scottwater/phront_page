@@ -43,7 +43,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: StandardRB Linter
-      uses: standardrb/standard-ruby-action@1.2.0
+      uses: standardrb/standard-ruby-action@v1.4.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
     #       bundler-cache: true
 
     #   - name: StandardRB Linter
-    #     uses: standardrb/standard-ruby-action@1.2.0
+    #     uses: standardrb/standard-ruby-action@v1.4.0
     #     env:
     #       USE_BUNDLE_VERSION: true # anything else (or omitting) will run the current version instead of your projects version
 
