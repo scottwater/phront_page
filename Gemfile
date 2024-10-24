@@ -10,7 +10,7 @@ gem "bootsnap", require: false
 gem "commonmarker"
 gem "diffy"
 gem "dry-initializer", "~> 3.1"
-gem "honeybadger", "~> 5.15"
+gem "honeybadger", "~> 5.17"
 gem "importmap-rails"
 
 gem "propshaft" # Propshaft needs to be listed before inline_svg. I a  not sure who is at fault here.
