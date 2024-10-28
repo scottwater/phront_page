@@ -153,7 +153,8 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    honeybadger (5.15.6)
+    honeybadger (5.18.0)
+      logger
     htmlbeautifier (1.4.3)
     htmlentities (4.3.4)
     i18n (1.14.5)
@@ -450,7 +451,7 @@ DEPENDENCIES
   dry-initializer (~> 3.1)
   erb_lint
   faker
-  honeybadger (~> 5.15)
+  honeybadger (~> 5.18)
   importmap-rails
   inline_svg
   keynote
