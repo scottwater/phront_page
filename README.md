@@ -25,7 +25,7 @@ The slight friction of using a static site generator can be good, but it was in 
 ## Local Setup
 
 1. Clone the repo
-2. Run `bin/setup` (you will need to have Ruby 3.3.4 installed)
+2. Run `bin/setup` (you will need to have Ruby 3.3.5 installed)
 3. Run `bin/dev`
 4. Login at /admin. See below for creating your login account.
 
