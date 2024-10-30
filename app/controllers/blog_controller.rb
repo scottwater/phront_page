@@ -13,7 +13,7 @@ class BlogController < ApplicationController
       Current.post = post
       render Blog::Posts::Default::Component.new(post:)
     in Redirect => redirect
-      redirect_to "#{redirect.to}?redirected=#{redirected}", status: :moved_permanently
+      redirect_to "#{redirect.to}?redirected=#{redirected}", status: :moved_permanently, allow_other_host: true
     else
       render Blog::MissingContent::Component.new, status: :not_found
     end
