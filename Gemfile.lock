@@ -156,7 +156,7 @@ GEM
     honeybadger (5.15.6)
     htmlbeautifier (1.4.3)
     htmlentities (4.3.4)
-    i18n (1.14.5)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
       actionpack (>= 6.0.0)
@@ -182,7 +182,7 @@ GEM
       rackup (~> 2)
       sqlite3 (>= 1.6.0, < 2.0.0)
       tilt (~> 2)
-    logger (1.6.0)
+    logger (1.6.1)
     lograge (0.14.0)
       actionpack (>= 4)
       activesupport (>= 4)
@@ -398,8 +398,8 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
     useragent (0.16.10)
-    view_component (3.14.0)
-      activesupport (>= 5.2.0, < 8.0)
+    view_component (3.20.0)
+      activesupport (>= 5.2.0, < 8.1)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
     view_component-contrib (0.2.3)
@@ -471,7 +471,7 @@ DEPENDENCIES
   tailwindcss-rails
   turbo-rails
   tzinfo-data
-  view_component (~> 3.13)
+  view_component (~> 3.20)
   view_component-contrib (~> 0.2.3)
   web-console
 
