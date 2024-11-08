@@ -52,6 +52,9 @@ jobs:
           bundler-cache: true
       - name: StandardRB Linter
         uses: standardrb/standard-ruby-action@1.2.0
+        with:
+          ruby-version: "3.3.5" # Explicitly set version
+          autofix: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
