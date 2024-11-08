@@ -37,5 +37,6 @@ module PhrontPage
     config.lookbook_enabled = ENV["LOOKBOOK_ENABLED"] == "true" || Rails.env.development?
     require "lookbook" if config.lookbook_enabled
     config.lograge.enabled = true
+    config.active_support.to_time_preserves_timezone = :zone
   end
 end

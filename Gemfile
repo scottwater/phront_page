@@ -17,13 +17,12 @@ gem "propshaft" # Propshaft needs to be listed before inline_svg. I a  not sure 
 gem "inline_svg"
 
 gem "keynote"
-gem "litestack", "0.4.4"
 gem "lograge"
 gem "puma", ">= 5.0"
 gem "requestjs-rails" # import maps should be loaded before this
-gem "rails", "< 8"
+gem "rails", "< 8.1"
 gem "slowpoke"
-gem "sqlite3", ">= 1.4"
+gem "sqlite3", ">= 2.1"
 gem "stimulus-rails"
 gem "tailwind_merge"
 gem "tailwindcss-rails"
