@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [main, page_test]
+    branches: [main, test]
 
 jobs:
   scan_ruby:
