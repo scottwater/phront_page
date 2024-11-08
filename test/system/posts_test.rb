@@ -59,9 +59,15 @@ class PostsTest < ApplicationSystemTestCase
     last_post = sign_in_execute_steps_and_return_post do
       fill_in "post_markdown", with: "This is a test post."
       click_on "Options"
+      # Add wait for drawer to be visible
+      assert_selector "label[for=image-drop-og_image_url]"
       drop_file("photo.jpg", "label[for=image-drop-og_image_url]")
-      send_keys(:escape) # Need to use escape to close the drawer
+      # Wait for upload to complete
+      assert_selector "div[data-admin--form--image-drop--component-target='previewZone'] img"
+      send_keys(:escape)
       click_on "Create Post"
+      # Wait for form submission
+      assert_no_selector "#post-form"
     end
     assert_match(/photo.jpg/, last_post.og_image_url)
   end
@@ -74,7 +80,6 @@ class PostsTest < ApplicationSystemTestCase
       page: pages(:about),
       image_url: "https://picsum.photos/id/237/600/800"
     )
-    # First page that is not the current page
     newly_selected_page = Pages.select_list_for_posts.find { |page| page[1] != post.page_id }
     assert_not_nil post.image_url
     visit edit_post_url(post)
@@ -84,23 +89,32 @@ class PostsTest < ApplicationSystemTestCase
       fill_in "post_title", with: "Updated Title"
       fill_in "post_markdown", with: "Updated Markdown"
       click_on "Options"
+      # Add wait for drawer
+      assert_selector "textarea[name='post[summary]']"
       fill_in "Summary", with: "Updated Summary"
       fill_in "Description", with: "Updated Description"
       select newly_selected_page[0], from: "Page"
       find("div[data-admin--form--image-drop--component-target='previewZone'] a").click
+      # Wait for preview to update
+      assert_selector "label[for=image-drop-og_image_url]"
       drop_file("photo.jpg", "label[for=image-drop-og_image_url]")
-      send_keys(:escape) # Need to use escape to close the drawer
+      # Wait for upload
+      assert_selector "div[data-admin--form--image-drop--component-target='previewZone'] img"
+      send_keys(:escape)
       click_button "Update Post"
+      # Wait for form submission
+      assert_no_selector "#post-form"
     end
 
-    post.reload
-    assert_equal "Updated Title", post.title
-    assert_equal "Updated Markdown", post.markdown
-    assert_equal "Updated Summary", post.summary
-    assert_equal "Updated Description", post.description
-    assert_equal newly_selected_page[1], post.page_id
-    assert_match(/photo.jpg/, post.og_image_url)
-    assert_nil post.image_url
+    # Use find_by! instead of reload to ensure we get a fresh record
+    updated_post = Post.find(post.id)
+    assert_equal "Updated Title", updated_post.title
+    assert_equal "Updated Markdown", updated_post.markdown
+    assert_equal "Updated Summary", updated_post.summary
+    assert_equal "Updated Description", updated_post.description
+    assert_equal newly_selected_page[1], updated_post.page_id
+    assert_match(/photo.jpg/, updated_post.og_image_url)
+    assert_nil updated_post.image_url
   end
 
   def sign_in_execute_steps_and_return_post(title: SecureRandom.hex(10), signin: true)
@@ -109,8 +123,8 @@ class PostsTest < ApplicationSystemTestCase
       fill_in "post_title", with: title
       yield(title)
     end
-    # Title is not ideal since it is not unique. However, since slug
-    # can be changed based on page/etc it is the best we can do.
-    Post.find_sole_by(title:)
+    # Wait for form submission and use find_by! for better error messages
+    assert_no_selector "#post-form"
+    Post.find_by!(title: title)
   end
 end
