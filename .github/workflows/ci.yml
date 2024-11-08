@@ -16,7 +16,6 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3.5" # Explicitly set version
           bundler-cache: true
 
       - name: Install dependencies
@@ -35,7 +34,6 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3.5" # Explicitly set version
           bundler-cache: true
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
@@ -48,13 +46,12 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3.5" # Explicitly set version
           bundler-cache: true
       - name: StandardRB Linter
         uses: standardrb/standard-ruby-action@1.2.0
         with:
-          ruby-version: "3.3.5" # Explicitly set version
           autofix: false
+          ruby-version: .ruby-version # This will make it use the project's Ruby version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -71,7 +68,6 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3.5" # Explicitly set version
           bundler-cache: true
 
       - name: Setup Node
