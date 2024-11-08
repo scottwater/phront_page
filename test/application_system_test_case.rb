@@ -13,6 +13,15 @@ Capybara.server = :puma, {Silent: true} # To clean up your test output
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :searls
 
+  def wait_until(time: Capybara.default_max_wait_time)
+    Timeout.timeout(time) do
+      until (value = yield)
+        sleep(0.1)
+      end
+      value
+    end
+  end
+
   def sign_in_as(user, remember_me: false)
     assert_current_path sign_in_url
     fill_in :email, with: user.email
