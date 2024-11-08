@@ -97,8 +97,19 @@ class PagesTest < ApplicationSystemTestCase
       fill_in "page_name", with: name
       yield(name)
     end
-    # Name is not ideal since it is not unique. However, since slug
-    # can be changed based on page/etc it is the best we can do.
-    Page.find_sole_by(name:)
+
+    # Wait for redirect to index page to ensure page was created
+    assert_current_path pages_url
+
+    # Wait up to 5 seconds for the page to be created
+    start_time = Time.current
+    page_record = nil
+    while Time.current - start_time < 5.seconds
+      page_record = Page.find_by!(name: name)
+      break if page_record
+      sleep 0.1
+    end
+
+    page_record
   end
 end
