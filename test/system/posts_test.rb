@@ -123,8 +123,9 @@ class PostsTest < ApplicationSystemTestCase
       fill_in "post_title", with: title
       yield(title)
     end
-    # Wait for form submission and use find_by! for better error messages
     assert_no_selector "#post-form"
-    Post.find_by!(title: title)
+    wait_until do
+      Post.find_by!(title: title)
+    end
   end
 end
