@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Admin::BaseController
+  rate_limit to: 5, within: 5.minute, only: :create, with: -> { redirect_to sign_in_path, alert: "Too many failed sign ins, please try again later." }
   layout "blank"
   skip_before_action :authenticate, only: %i[new create]
 

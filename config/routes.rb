@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       post "/first-run", to: "first_run#create"
     end
 
-    get "sign_in", to: "sessions#new"
+    get "sign_in", to: "sessions#new", as: "sign_in"
     post "sign_in", to: "sessions#create"
 
     authenticate :author do
