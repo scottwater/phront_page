@@ -20,7 +20,7 @@ gem "keynote"
 gem "lograge"
 gem "puma", ">= 5.0"
 gem "requestjs-rails" # import maps should be loaded before this
-gem "rails", "< 8.1"
+gem "rails", "~> 8.0.0"
 gem "slowpoke"
 gem "sqlite3", ">= 2.1"
 gem "stimulus-rails"
@@ -30,6 +30,10 @@ gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
 gem "view_component-contrib", "~> 0.2.3"
 gem "view_component", "~> 3.13"
+
+gem "solid_cache"
+gem "solid_queue"
+gem "solid_cable"
 
 group :development, :test do
   gem "brakeman", require: false
