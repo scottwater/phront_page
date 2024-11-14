@@ -18,7 +18,7 @@ class Author < ApplicationRecord
   normalizes :email, with: -> { _1.strip.downcase }
 
   def self.first_run_safe?
-    count == 0 || count == 1 && Author.first.email == "temp@phrontpage.com"
+    count == 0 || (count == 1 && Author.first.email == "temp@phrontpage.com")
   end
 
   def time_zone
