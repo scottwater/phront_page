@@ -5,8 +5,9 @@ module Authenticator
   class AuthorConstraint
     def matches?(request)
       Current.session ||= Session.find_by_id(request.cookie_jar.signed[:phront_page_session_token])
-      # session = Session.find_by_id(request.cookie_jar.signed[:phront_page_session_token])
-      Current.session&.author
+      !!Current.session&.author.tap do |author|
+        request.session[:return_to] = request.fullpath unless author
+      end
     end
   end
 
