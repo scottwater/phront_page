@@ -8,3 +8,5 @@ ignore:
   - 'db/migrate/202406*.rb'
   - 'db/migrate/202405*.rb'
   - 'db/migrate/202404*.rb'
+  - 'db/migrate/20241108210235_create_active_storage_variant_records.active_storage.rb'
+  - 'db/migrate/20241108210234_add_service_name_to_active_storage_blobs.active_storage.rb'
