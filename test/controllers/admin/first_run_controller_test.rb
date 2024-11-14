@@ -11,10 +11,11 @@ class Admin::FirstRunControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not be successful if first run is not enabled" do
+    # With route auth, the url no longer exists
+    # so we send them back home
     Author.stub :first_run_safe?, false do
-      assert_raises RuntimeError do
-        get first_run_url
-      end
+      get first_run_url
+      assert_redirected_to root_url
     end
   end
 

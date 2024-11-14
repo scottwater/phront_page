@@ -17,9 +17,7 @@ module Auth::Authenticate
     # For now, we will set the current session, but not require it
     # outside of the admin. This may need to be removed from edge
     # caching in the future
-    if (session_record = Session.find_by_id(cookies.signed[:phront_page_session_token]))
-      Current.session = session_record
-    end
+    Current.session ||= Session.find_by_id(cookies.signed[:phront_page_session_token])
   end
 
   def set_current_request_details

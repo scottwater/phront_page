@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       post "/first-run", to: "first_run#create"
     end
 
+    # Send to home if not available
+    get "/first-run", to: redirect("/")
+
     get "sign_in", to: "sessions#new", as: "sign_in"
     post "sign_in", to: "sessions#create"
 
