@@ -1,0 +1,24 @@
+output:
+  - failure
+
+pre-push:
+  parallel: true
+  commands:
+    brakeman:
+      tags: backend security
+      run: bundle exec brakeman --no-pager
+
+pre-commit:
+  parallel: true
+  commands:
+    ruby-test:
+      skip:
+      - merge
+      - rebase
+      run: bundle exec rails test
+    standardrb:
+      tags: backend style
+      glob: "*.rb"
+      exclude: '(^|/)(application|routes)\.rb$'
+      run: bundle exec standardrb {staged_files}
+      skip_empty: true

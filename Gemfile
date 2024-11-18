@@ -43,6 +43,7 @@ group :development, :test do
   gem "lookbook", require: false
   gem "standard"
   gem "standard-rails"
+  gem "lefthook"
 end
 
 group :development do
