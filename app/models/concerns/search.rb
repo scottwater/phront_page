@@ -4,7 +4,7 @@ module Search
   private def update_search_index
     fts_model = "Fts#{self.class.name}".constantize
     search_attrs = self.class.search_scope_attributes.each_with_object({}) { |attr, acc|
-      acc[attr] = self.class.quote_string(send(attr) || "")
+      acc[attr] = send(attr) || ""
     }
 
     # Delete existing FTS record
@@ -67,10 +67,6 @@ module Search
           )
         end
       end
-    end
-
-    def quote_string(s)
-      s.gsub("\\", '\&\&').gsub("'", "''") if s.present?
     end
 
     def fts_foreign_key
