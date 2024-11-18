@@ -2,9 +2,10 @@
 
 class Post < ApplicationRecord
   include Redirect::Content
+  include Search
+  search_scope(:title, :markdown, :description)
   include Content
   include Slugger
-  include Search
   belongs_to :author
   belongs_to :page, optional: true
   has_many :revisions, as: :record, dependent: :destroy

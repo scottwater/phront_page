@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_15_160917) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_18_105910) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -132,4 +132,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_15_160917) do
   add_foreign_key "posts", "authors"
   add_foreign_key "posts", "pages"
   add_foreign_key "sessions", "authors"
+
+  # Virtual tables defined in this database.
+  # Note that virtual tables may not work with other database engines. Be careful if changing database.
+  create_virtual_table "fts_posts", "fts5", ["title", "markdown", "description", "post_id"]
 end
