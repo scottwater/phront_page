@@ -74,4 +74,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.slowpoke.timeout = 1.year.to_i
+
+  config.hosts = nil if ENV["ALLOW_ALL_HOSTS"]
 end
