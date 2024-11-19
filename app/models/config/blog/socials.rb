@@ -14,6 +14,8 @@ class Config::Blog::Socials < Config
     s.string :x_username, blank: false
     s.string :youtube_url, blank: false
     s.string :youtube_username, blank: false
+    s.string :bsky_url, blank: false
+    s.string :bsky_username, blank: false
   end
 
   before_validation do
@@ -25,7 +27,7 @@ class Config::Blog::Socials < Config
   end
 
   def self.networks
-    typed_stores[:data].fields.keys.map { |key| key.to_s.gsub(/_(?:url|username)$/, "") }.uniq
+    typed_stores[:data].fields.keys.map { |key| key.to_s.gsub(/_(?:url|username)$/, "") }.uniq.sort
   end
 
   def networks
