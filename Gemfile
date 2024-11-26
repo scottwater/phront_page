@@ -4,7 +4,7 @@ source "https://rubygems.org"
 ruby file: ".ruby-version"
 
 gem "activerecord-typedstore"
-gem "aws-sdk-s3", "~> 1.156", require: false
+gem "aws-sdk-s3", "~> 1.174", require: false
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
 gem "commonmarker"
