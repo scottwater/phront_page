@@ -160,7 +160,7 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    honeybadger (5.19.2)
+    honeybadger (5.26.1)
       logger
     htmlbeautifier (1.4.3)
     htmlentities (4.3.4)
@@ -184,7 +184,7 @@ GEM
     language_server-protocol (3.17.0.3)
     lefthook (1.8.4)
     lint_roller (1.1.0)
-    logger (1.6.1)
+    logger (1.6.3)
     lograge (0.14.0)
       actionpack (>= 4)
       activesupport (>= 4)
@@ -462,7 +462,7 @@ DEPENDENCIES
   dry-initializer (~> 3.1)
   erb_lint
   faker
-  honeybadger (~> 5.15)
+  honeybadger (~> 5.26)
   importmap-rails
   inline_svg
   keynote
