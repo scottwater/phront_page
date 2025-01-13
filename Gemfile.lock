@@ -160,8 +160,9 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    honeybadger (5.19.2)
+    honeybadger (5.26.2)
       logger
+      ostruct
     htmlbeautifier (1.4.3)
     htmlentities (4.3.4)
     i18n (1.14.6)
@@ -184,7 +185,7 @@ GEM
     language_server-protocol (3.17.0.3)
     lefthook (1.8.4)
     lint_roller (1.1.0)
-    logger (1.6.1)
+    logger (1.6.5)
     lograge (0.14.0)
       actionpack (>= 4)
       activesupport (>= 4)
@@ -248,6 +249,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
+    ostruct (0.6.1)
     parallel (1.26.3)
     parser (3.3.6.0)
       ast (~> 2.4.1)
@@ -462,7 +464,7 @@ DEPENDENCIES
   dry-initializer (~> 3.1)
   erb_lint
   faker
-  honeybadger (~> 5.15)
+  honeybadger (~> 5.26)
   importmap-rails
   inline_svg
   keynote
