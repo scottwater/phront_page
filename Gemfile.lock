@@ -182,7 +182,7 @@ GEM
     keynote (1.1.1)
       rails (>= 3.1.0)
     language_server-protocol (3.17.0.3)
-    lefthook (1.8.4)
+    lefthook (1.10.7)
     lint_roller (1.1.0)
     logger (1.6.1)
     lograge (0.14.0)
